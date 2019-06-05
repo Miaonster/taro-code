@@ -2,8 +2,9 @@
   "name": "taro-code",
   "version": "1.0.0",
   "private": true,
-  "description": "Taro.js barcode &amp; qrcode",
+  "description": "Taro.js barcode & qrcode",
   "scripts": {
+    "build": "taro build --ui",
     "build:weapp": "taro build --type weapp",
     "build:swan": "taro build --type swan",
     "build:alipay": "taro build --type alipay",
@@ -19,6 +20,7 @@
   },
   "author": "",
   "license": "MIT",
+  "main": "dist/index.js",
   "dependencies": {
     "@tarojs/components": "1.2.26",
     "@tarojs/router": "1.2.26",

@@ -1,5 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View } from '@tarojs/components'
+import Barcode from '@/components/Barcode';
+import Qrcode from '@/components/Qrcode';
 import './index.css'
 
 export default class Index extends Component {
@@ -21,7 +23,8 @@ export default class Index extends Component {
   render () {
     return (
       <View className='index'>
-        <Text>Hello world!</Text>
+        <Barcode text='hello' width={320} />
+        <Qrcode text='hello' />
       </View>
     )
   }
