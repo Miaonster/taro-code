@@ -4,7 +4,7 @@ import { Canvas, View } from '@tarojs/components'
 import utils from '@/utils'
 import './style.css'
 
-class Qrcode extends Component {
+class QRCode extends Component {
   componentDidMount () {
     const ctx = Taro.createCanvasContext('qrcode', this)
 
@@ -35,16 +35,16 @@ class Qrcode extends Component {
   }
 }
 
-Qrcode.defaultProps = {
+QRCode.defaultProps = {
   text: '',
   width: 300,
   height: 300,
 }
 
-Qrcode.propTypes = {
+QRCode.propTypes = {
   text: PropTypes.string,
   width: PropTypes.number,
   height: PropTypes.number,
 }
 
-export default Qrcode
+export default QRCode
