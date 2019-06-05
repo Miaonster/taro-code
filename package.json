@@ -1,7 +1,6 @@
 {
   "name": "taro-code",
   "version": "1.0.1",
-  "private": true,
   "description": "Taro.js barcode & qrcode",
   "scripts": {
     "build": "taro build --ui",
