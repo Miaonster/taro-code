@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import Taro, { Component } from '@tarojs/taro'
 import { Canvas, View } from '@tarojs/components'
-import utils from '@/utils'
+import utils from '../../utils'
 import './style.css'
 
 class QRCode extends Component {

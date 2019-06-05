@@ -1,7 +1,2 @@
-import Barcode from '@/components/Barcode';
-import QRCode from '@/components/QRCode';
-
-export default {
-  Barcode,
-  QRCode,
-}
+export { default as Barcode } from './components/Barcode'
+export { default as QRCode } from './components/QRCode'
