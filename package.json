@@ -17,7 +17,7 @@
     "dev:h5": "npm run build:h5 -- --watch",
     "dev:rn": "npm run build:rn -- --watch"
   },
-  "files": ["dist", "src/components", ""],
+  "files": ["dist"],
   "author": "Miaonster <miaonster17@gmail.com>",
   "license": "MIT",
   "main": "dist/index.js",
