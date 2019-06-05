@@ -1,6 +1,6 @@
 {
   "name": "taro-code",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Taro.js barcode & qrcode",
   "scripts": {
@@ -18,7 +18,8 @@
     "dev:h5": "npm run build:h5 -- --watch",
     "dev:rn": "npm run build:rn -- --watch"
   },
-  "author": "",
+  "files": ["dist"],
+  "author": "Miaonster <miaonster17@gmail.com>",
   "license": "MIT",
   "main": "dist/index.js",
   "dependencies": {
