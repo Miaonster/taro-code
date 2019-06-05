@@ -36,7 +36,7 @@ class Barcode extends Component {
 }
 
 Barcode.defaultProps = {
-  text: '',
+  text: 'HELLO',
   width: 375,
   height: 80,
 }

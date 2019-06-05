@@ -1,6 +1,6 @@
 {
   "name": "taro-code",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Taro.js barcode & qrcode",
   "scripts": {
     "build": "export TARO_BUILD_TYPE=ui && taro build --ui",
@@ -17,9 +17,9 @@
     "dev:h5": "npm run build:h5 -- --watch",
     "dev:rn": "npm run build:rn -- --watch"
   },
-  "files": ["dist"],
   "author": "Miaonster <miaonster17@gmail.com>",
   "license": "MIT",
+  "files": ["dist"],
   "main": "dist/index.js",
   "dependencies": {
     "@tarojs/components": "1.2.26",

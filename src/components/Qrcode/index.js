@@ -7,24 +7,23 @@ import './style.css'
 class QRCode extends Component {
   componentDidMount () {
     const ctx = Taro.createCanvasContext('qrcode', this)
-
-    utils.qrcode({
+    utils.qrcode(this.props.text, {
       ctx,
-      text: this.props.text,
-      width: this.props.width * 4,
-      height: this.props.height * 4,
+      size: this.props.size * 2,
+      padding: 0,
     })
+    ctx.draw()
   }
 
   render () {
     const style = {
-      width: this.props.width * 4 + 'px',
-      height: this.props.height * 4 + 'px',
+      width: this.props.size * 2 + 'px',
+      height: this.props.size * 2 + 'px',
     }
 
     const wrapStyle = {
-      width: this.props.width + 'px',
-      height: this.props.height + 'px',
+      width: this.props.size + 'px',
+      height: this.props.size + 'px',
     }
 
     return (
@@ -36,15 +35,13 @@ class QRCode extends Component {
 }
 
 QRCode.defaultProps = {
-  text: '',
-  width: 300,
-  height: 300,
+  text: 'HELLO',
+  size: 300,
 }
 
 QRCode.propTypes = {
   text: PropTypes.string,
-  width: PropTypes.number,
-  height: PropTypes.number,
+  size: PropTypes.number,
 }
 
 export default QRCode

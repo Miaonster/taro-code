@@ -23,8 +23,8 @@ export default class Index extends Component {
   render () {
     return (
       <View className='index'>
-        <Barcode text='hello' width={320} />
-        <QRCode text='hello' />
+        <Barcode text='hello' width={320} height={60} />
+        <QRCode text='hello world' size={300} />
       </View>
     )
   }
