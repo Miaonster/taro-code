@@ -60,4 +60,4 @@ class Code extends Taro.Component {
 #### size
 
 * Type: `number`
-* Default: `375`
+* Default: `300`
