@@ -38,7 +38,7 @@ class Code extends Taro.Component {
 #### text
 
 * Type: `string`
-* Default: `'HELLO'`
+* Default: `''`
 
 #### width
 
@@ -55,7 +55,7 @@ class Code extends Taro.Component {
 #### text
 
 * Type: `string`
-* Default: `'HELLO'`
+* Default: `''`
 
 #### size
 
