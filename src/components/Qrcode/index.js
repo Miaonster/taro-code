@@ -17,7 +17,7 @@ class QRCode extends Component {
     const ctx = Taro.createCanvasContext('qrcode', this)
     utils.qrcode(text, {
       ctx,
-      size: this.props.size * 2,
+      size: this.props.size,
       padding: 0,
     })
     ctx.draw()
@@ -25,8 +25,8 @@ class QRCode extends Component {
 
   render () {
     const style = {
-      width: this.props.size * 2 + 'px',
-      height: this.props.size * 2 + 'px',
+      width: this.props.size + 'px',
+      height: this.props.size + 'px',
     }
 
     const wrapStyle = {
@@ -36,14 +36,14 @@ class QRCode extends Component {
 
     return (
       <View className='wrap' style={wrapStyle}>
-        <Canvas canvasId='qrcode' className='qrcode' style={style}></Canvas>
+        {this.props.text && <Canvas canvasId='qrcode' className='qrcode' style={style}></Canvas>}
       </View>
     )
   }
 }
 
 QRCode.defaultProps = {
-  text: 'HELLO',
+  text: '',
   size: 300,
 }
 

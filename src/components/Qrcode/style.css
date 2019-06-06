@@ -2,7 +2,3 @@
   width: 100%;
   overflow: hidden;
 }
-.qrcode {
-  transform: scale(0.5);
-  transform-origin: 0 0;
-}

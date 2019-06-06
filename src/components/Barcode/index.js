@@ -18,15 +18,15 @@ class Barcode extends Component {
     utils.barcode({
       ctx,
       text: text,
-      width: this.props.width * 4,
-      height: this.props.height * 4,
+      width: this.props.width * 2,
+      height: this.props.height * 2,
     })
   }
 
   render () {
     const style = {
-      width: this.props.width * 4 + 'px',
-      height: this.props.height * 4 + 'px',
+      width: this.props.width * 2 + 'px',
+      height: this.props.height * 2 + 'px',
     }
 
     const wrapStyle = {
