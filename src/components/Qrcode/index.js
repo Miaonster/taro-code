@@ -6,8 +6,16 @@ import './style.css'
 
 class QRCode extends Component {
   componentDidMount () {
+    this.drawCode(this.props.text)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    this.drawCode(nextProps.text)
+  }
+
+  drawCode (text) {
     const ctx = Taro.createCanvasContext('qrcode', this)
-    utils.qrcode(this.props.text, {
+    utils.qrcode(text, {
       ctx,
       size: this.props.size * 2,
       padding: 0,

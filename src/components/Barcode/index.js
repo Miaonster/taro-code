@@ -6,11 +6,18 @@ import './style.css'
 
 class Barcode extends Component {
   componentDidMount () {
-    const ctx = Taro.createCanvasContext('barcode', this)
+    this.drawCode(this.props.text)
+  }
 
+  componentWillReceiveProps (nextProps) {
+    this.drawCode(nextProps.text)
+  }
+
+  drawCode (text) {
+    const ctx = Taro.createCanvasContext('barcode', this)
     utils.barcode({
       ctx,
-      text: this.props.text,
+      text: text,
       width: this.props.width * 4,
       height: this.props.height * 4,
     })

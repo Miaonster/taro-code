@@ -10,9 +10,19 @@ export default class Index extends Component {
     navigationBarTitleText: '首页'
   }
 
+  state = {
+    text: 'hello'
+  }
+
   componentWillMount () { }
 
-  componentDidMount () { }
+  componentDidMount () {
+    setInterval(() => {
+      this.setState({
+        text: Date.now() + ''
+      })
+    }, 1000);
+  }
 
   componentWillUnmount () { }
 
@@ -23,8 +33,12 @@ export default class Index extends Component {
   render () {
     return (
       <View className='index'>
-        <Barcode text='hello' width={320} height={60} />
-        <QRCode text='hello world' size={300} />
+        <View className='barcode'>
+          <Barcode text={this.state.text} width={320} height={60} />
+        </View>
+        <View className='qrcode'>
+          <QRCode text={this.state.text} size={300} />
+        </View>
       </View>
     )
   }
