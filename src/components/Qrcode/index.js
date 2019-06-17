@@ -24,19 +24,20 @@ class QRCode extends Component {
   }
 
   render () {
+    const { size, text } = this.props
     const style = {
-      width: this.props.size + 'px',
-      height: this.props.size + 'px',
+      width: size + 'px',
+      height: size + 'px',
     }
 
     const wrapStyle = {
-      width: this.props.size + 'px',
-      height: this.props.size + 'px',
+      width: size + 'px',
+      height: size + 'px',
     }
 
     return (
       <View className='wrap' style={wrapStyle}>
-        {this.props.text && <Canvas canvasId='qrcode' className='qrcode' style={style}></Canvas>}
+        {text && <Canvas canvasId='qrcode' className='qrcode' style={style}></Canvas>}
       </View>
     )
   }

@@ -24,14 +24,15 @@ class Barcode extends Component {
   }
 
   render () {
+    const { width, height } = this.props
     const style = {
-      width: this.props.width * 2 + 'px',
-      height: this.props.height * 2 + 'px',
+      width: width * 2 + 'px',
+      height: height * 2 + 'px',
     }
 
     const wrapStyle = {
-      width: this.props.width + 'px',
-      height: this.props.height + 'px',
+      width: width + 'px',
+      height: height + 'px',
     }
 
     return (
@@ -43,7 +44,7 @@ class Barcode extends Component {
 }
 
 Barcode.defaultProps = {
-  text: 'HELLO',
+  text: '',
   width: 375,
   height: 80,
 }

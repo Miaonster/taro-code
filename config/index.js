@@ -28,6 +28,9 @@ const config = {
         'transform-class-properties',
         'transform-object-rest-spread'
       ]
+    },
+    uglify: {
+      enable: true,
     }
   },
   defineConstants: {
