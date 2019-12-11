@@ -1,56 +1,38 @@
+import Taro, { useState, useEffect } from '@tarojs/taro'
 import PropTypes from 'prop-types'
-import Taro, { Component } from '@tarojs/taro'
-import { Canvas, View } from '@tarojs/components'
-import utils from '../../utils'
-import './style.css'
+import { Image } from '@tarojs/components'
+import { createQrCodeImg } from 'wx-base64-qrcode'
 
-class QRCode extends Component {
-  componentDidMount () {
-    this.drawCode(this.props.text)
-  }
+function QRCode({ text, size, scale, typeNumber, errorCorrectLevel }) {
+  const [image, setImage] = useState('')
 
-  componentWillReceiveProps (nextProps) {
-    this.drawCode(nextProps.text)
-  }
-
-  drawCode (text) {
-    const ctx = Taro.createCanvasContext('qrcode', this)
-    utils.qrcode(text, {
-      ctx,
-      size: this.props.size,
-      padding: 0,
-    })
-    ctx.draw()
-  }
-
-  render () {
-    const { size, text } = this.props
-    const style = {
-      width: size + 'px',
-      height: size + 'px',
+  useEffect(() => {
+    if (text) {
+      const options = { errorCorrectLevel, typeNumber, size: size * scale }
+      setImage(createQrCodeImg(text, options))
+    } else {
+      setImage('')
     }
+  }, [text])
 
-    const wrapStyle = {
-      width: size + 'px',
-      height: size + 'px',
-    }
-
-    return (
-      <View className='wrap' style={wrapStyle}>
-        {text && <Canvas canvasId='qrcode' className='qrcode' style={style}></Canvas>}
-      </View>
-    )
-  }
+  const style = { width: size + 'px', height: size + 'px' }
+  return <Image style={style} src={image} />
 }
 
 QRCode.defaultProps = {
   text: '',
-  size: 300,
+  size: 100,
+  scale: 3,
+  errorCorrectLevel: 'M',
+  typeNumber: 2,
 }
 
 QRCode.propTypes = {
-  text: PropTypes.string,
   size: PropTypes.number,
+  scale: PropTypes.number,
+  text: PropTypes.string,
+  errorCorrectLevel: PropTypes.string,
+  typeNumber: PropTypes.number,
 }
 
 export default QRCode

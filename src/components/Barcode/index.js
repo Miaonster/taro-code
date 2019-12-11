@@ -1,58 +1,37 @@
+import Taro, { useState, useEffect } from '@tarojs/taro'
 import PropTypes from 'prop-types'
-import Taro, { Component } from '@tarojs/taro'
-import { Canvas, View } from '@tarojs/components'
-import utils from '../../utils'
-import './style.css'
+import { Image } from '@tarojs/components'
+import utils from '@/utils'
 
-class Barcode extends Component {
-  componentDidMount () {
-    this.drawCode(this.props.text)
-  }
+function BarCode({ text, scale, width, height }) {
+  const [image, setImage] = useState('')
 
-  componentWillReceiveProps (nextProps) {
-    this.drawCode(nextProps.text)
-  }
-
-  drawCode (text) {
-    const ctx = Taro.createCanvasContext('barcode', this)
-    utils.barcode({
-      ctx,
-      text: text,
-      width: this.props.width * 2,
-      height: this.props.height * 2,
-    })
-  }
-
-  render () {
-    const { width, height } = this.props
-    const style = {
-      width: width * 2 + 'px',
-      height: height * 2 + 'px',
+  useEffect(() => {
+    if (text) {
+      setImage(utils.barcode({ text, scale }))
+    } else {
+      setImage('')
     }
+  }, [text])
 
-    const wrapStyle = {
-      width: width + 'px',
-      height: height + 'px',
-    }
-
-    return (
-      <View className='wrap' style={wrapStyle}>
-        <Canvas canvasId='barcode' className='barcode' style={style}></Canvas>
-      </View>
-    )
-  }
+  const widthString = width ? width + 'px' : ''
+  const heightString = height ? height + 'px' : ''
+  const style = { width: widthString, height: heightString }
+  return <Image style={style} src={image} />
 }
 
-Barcode.defaultProps = {
+BarCode.defaultProps = {
   text: '',
-  width: 375,
-  height: 80,
+  scale: 4,
+  width: 300,
+  height: 60,
 }
 
-Barcode.propTypes = {
+BarCode.propTypes = {
   text: PropTypes.string,
+  scale: PropTypes.number,
   width: PropTypes.number,
   height: PropTypes.number,
 }
 
-export default Barcode
+export default BarCode
