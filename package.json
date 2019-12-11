@@ -1,6 +1,6 @@
 {
   "name": "taro-code",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Taro.js barcode & qrcode",
   "scripts": {
     "build": "export TARO_BUILD_TYPE=ui && taro build --ui",

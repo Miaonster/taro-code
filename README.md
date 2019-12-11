@@ -1,6 +1,6 @@
 # Taro Code
 
-> QRCode & Barcode component for [Taro.js](https://taro.js.org), inspired by [wx-mini-qrcode](https://github.com/flyingsouthwind/wx-mini-qrcode) and [wxbarcode](https://github.com/alsey/wxbarcode).
+> QRCode & Barcode component for [Taro.js](https://taro.js.org), inspired by [wx-base64-qrcode](https://github.com/PsChina/wx-base64-qrcode) and [wxbarcode](https://github.com/alsey/wxbarcode). Components will generate base64 qrcode/barcode image.
 
 ## Getting Started
 
@@ -48,7 +48,7 @@ class Code extends Taro.Component {
 #### width
 
 - Type: `number`
-- Default: `375`
+- Default: `300`
 
 #### height
 

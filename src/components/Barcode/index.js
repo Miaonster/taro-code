@@ -1,7 +1,7 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
 import PropTypes from 'prop-types'
 import { Image } from '@tarojs/components'
-import utils from '@/utils'
+import utils from '../../utils'
 
 function BarCode({ text, scale, width, height }) {
   const [image, setImage] = useState('')
