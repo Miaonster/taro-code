@@ -22,10 +22,10 @@ class Code extends Taro.Component {
   render() {
     return (
       <View>
-        <Barcode text='hello' width={305} height={68} scale={4} />
+        <Barcode text='hello' width={300} height={60} scale={4} />
         <QRCode
           text='world'
-          size={130}
+          size={300}
           scale={4}
           errorCorrectLevel='M'
           typeNumber={2}
@@ -40,49 +40,19 @@ class Code extends Taro.Component {
 
 ### Barcode
 
-#### text
-
-- Type: `string`
-- Default: `''`
-
-#### width
-
-- Type: `number`
-- Default: `300`
-
-#### height
-
-- Type: `number`
-- Default: `80`
-
-#### scale
-
-- Type: `number`
-- Default: `4`
+| Prop     | Type     | Default |
+| -------- | -------- | ------- |
+| `text`   | `string` | `''`    |
+| `width`  | `number` | `300`   |
+| `height` | `number` | `80`    |
+| `scale`  | `number` | `4`     |
 
 ### QRCode
 
-#### text
-
-- Type: `string`
-- Default: `''`
-
-#### size
-
-- Type: `number`
-- Default: `300`
-
-#### scale
-
-- Type: `number`
-- Default: `4`
-
-#### typeNumber
-
-- Type: `number`
-- Default: `2`
-
-#### errorCorrectLevel
-
-- Type: `string`
-- Default: `'M'`
+| Prop                | Type     | Default |
+| ------------------- | -------- | ------- |
+| `text`              | `string` | `''`    |
+| `size`              | `number` | `300`   |
+| `scale`             | `number` | `4`     |
+| `typeNumber`        | `number` | `2`     |
+| `errorCorrectLevel` | `string` | `'M'`   |
