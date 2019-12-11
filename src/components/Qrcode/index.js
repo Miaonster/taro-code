@@ -22,7 +22,7 @@ function QRCode({ text, size, scale, typeNumber, errorCorrectLevel }) {
 QRCode.defaultProps = {
   text: '',
   size: 100,
-  scale: 3,
+  scale: 4,
   errorCorrectLevel: 'M',
   typeNumber: 2,
 }
