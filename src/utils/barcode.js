@@ -197,7 +197,7 @@ function stringToCode128(text) {
         //ok some type of shift is nessecary
         if (shifter != -1) {
             result.push(shifter);
-            result.push(codeValue(chr2));
+            result.push(codeValue(chr1));
         }
         else {
             if (currcs == CODESET.C) {
