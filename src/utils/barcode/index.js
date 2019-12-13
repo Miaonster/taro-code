@@ -47,8 +47,9 @@ function btoa(string) {
 
 function getBuffer({ pieces, width, extraBytes, scale = 1 }) {
   return pieces
-    .flatMap((piece) => Array(scale).fill(piece))
-    .flatMap((piece, index) => {
+    .map((piece) => Array(scale).fill(piece))
+    .reduce((acc, x) => acc.concat(x), [])
+    .map((piece, index) => {
       const code = parseInt(piece) ? 0 : 255
       const colors = [code, code, code]
       if (!((index % width) - 1) && extraBytes) {
@@ -57,6 +58,7 @@ function getBuffer({ pieces, width, extraBytes, scale = 1 }) {
         return colors
       }
     })
+    .reduce((acc, x) => acc.concat(x), [])
     .map((x) => String.fromCharCode(x))
     .join('')
 }
