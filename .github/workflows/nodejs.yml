@@ -21,8 +21,9 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: install # will run `yarn install` command
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: test # will run `yarn test` command
+
+      - name: install
+        run: yarn
+
+      - name: lint
+        run: yarn lint
