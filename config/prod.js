@@ -1,9 +1,9 @@
+// eslint-disable-next-line import/no-commonjs
 module.exports = {
   env: {
-    NODE_ENV: '"production"'
+    NODE_ENV: '"production"',
   },
-  defineConstants: {
-  },
+  defineConstants: {},
   weapp: {},
   h5: {
     /**
@@ -14,5 +14,5 @@ module.exports = {
      *     .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin, [])
      * }
      */
-  }
+  },
 }

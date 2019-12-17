@@ -12,7 +12,7 @@ function BarCode({ text, scale, width, height }) {
     } else {
       setImage('')
     }
-  }, [text])
+  }, [text, scale])
 
   const widthString = width ? width + 'px' : ''
   const heightString = height ? height + 'px' : ''

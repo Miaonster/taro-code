@@ -5,10 +5,6 @@ import QRCode from '../../components/QRCode'
 import './index.css'
 
 export default class Index extends Component {
-  config = {
-    navigationBarTitleText: '首页',
-  }
-
   state = {
     text: 'hello',
   }
@@ -19,6 +15,10 @@ export default class Index extends Component {
         text: Date.now() + '',
       })
     }, 1000)
+  }
+
+  config = {
+    navigationBarTitleText: '首页',
   }
 
   render() {

@@ -13,7 +13,7 @@ function QRCode({ text, size, scale, typeNumber, errorCorrectLevel }) {
     } else {
       setImage('')
     }
-  }, [text])
+  }, [text, scale, size, errorCorrectLevel, typeNumber])
 
   const style = { width: size + 'px', height: size + 'px' }
   return <Image style={style} src={image} />
