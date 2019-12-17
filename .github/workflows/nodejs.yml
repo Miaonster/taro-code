@@ -20,12 +20,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: Install
-        uses: CultureHQ/actions-yarn@master
+      - uses: borales/actions-yarn@v2.0.0
         with:
-          args: install
-
-      - name: Lint
-        uses: CultureHQ/actions-yarn@master
+          cmd: install # will run `yarn install` command
+      - uses: borales/actions-yarn@v2.0.0
         with:
-          args: lint
+          cmd: test # will run `yarn test` command
