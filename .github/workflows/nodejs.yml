@@ -20,8 +20,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - uses: borales/actions-yarn@v2.0.0
-
       - name: install
         run: yarn
 
