@@ -20,11 +20,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: Yarn CLI
-        uses: CultureHQ/actions-yarn@v1.0.1
+      - name: Install
+        uses: CultureHQ/actions-yarn@master
+        with:
+          args: install
 
-      - name: Install Dependencies
-        run: yarn
-
-      - name: Build
-        run: npm run lint
+      - name: Lint
+        uses: CultureHQ/actions-yarn@master
+        with:
+          args: lint
