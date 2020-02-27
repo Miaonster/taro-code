@@ -39,9 +39,6 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "dependencies": {
-    "wx-base64-qrcode": "^1.0.4"
-  },
   "devDependencies": {
     "@babel/core": "^7.7.5",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
