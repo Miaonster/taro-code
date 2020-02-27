@@ -1,19 +1,10 @@
-import Taro, { useState, useEffect } from '@tarojs/taro'
+import Taro, { useMemo } from '@tarojs/taro'
 import PropTypes from 'prop-types'
 import { Image } from '@tarojs/components'
-import utils from '../../utils'
+import barcode from '../../utils/barcode'
 
 function BarCode({ text, scale, width, height }) {
-  const [image, setImage] = useState('')
-
-  useEffect(() => {
-    if (text) {
-      setImage(utils.barcode({ text, scale }))
-    } else {
-      setImage('')
-    }
-  }, [text, scale])
-
+  const image = useMemo(() => barcode({ text, scale }), [text, scale])
   const widthString = width ? width + 'px' : ''
   const heightString = height ? height + 'px' : ''
   const style = { width: widthString, height: heightString }
