@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/Miaonster/taro-code/compare/v2.0.4...v2.1.0) (2020-02-27)
+
+
+### Features
+
+* add test files & fix 40+ text qrcode ([804de72](https://github.com/Miaonster/taro-code/commit/804de72eec2a25fd7dfbef9a0d972fa3136369ab)), closes [#13](https://github.com/Miaonster/taro-code/issues/13)
+
 ### 2.0.4 (2019-12-17)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "taro-code",
-  "version": "2.0.4",
+  "version": "2.1.0",
   "description": "Taro.js barcode & qrcode",
   "homepage": "https://github.com/miaonster/taro-code",
   "license": "MIT",
@@ -20,7 +20,8 @@
     "dev:weapp": "taro build --type weapp --watch",
     "update:project": "taro update project",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "release": "standard-version"
   },
   "husky": {
     "hooks": {
@@ -84,6 +85,7 @@
     "nerv-devtools": "^1.5.6",
     "nerv-server": "^1.5.6",
     "nervjs": "^1.5.6",
-    "sinon": "^7.5.0"
+    "sinon": "^7.5.0",
+    "standard-version": "^7.1.0"
   }
 }
