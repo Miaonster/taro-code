@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 import Nerv from 'nervjs'
 import { renderToString } from 'nerv-server'
-import Barcode from '../../../.temp/components/Barcode'
+import Barcode from '../../../.temp/components/BarcodeComponent'
 
 describe('Barcode test', () => {
   it('Barcode test suites', () => {

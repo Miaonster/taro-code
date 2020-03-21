@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Barcode test Barcode test suites 1`] = `"<div class=\\"taro-img\\" style=\\"width:300px;height:60px;\\"><img class=\\"taro-img__mode-scaletofill\\" src=\\"\\"/></div>"`;

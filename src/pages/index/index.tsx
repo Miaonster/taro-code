@@ -1,7 +1,7 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import Barcode from '../../components/Barcode'
-import QRCode from '../../components/Qrcode'
+import Barcode from '../../components/BarcodeComponent'
+import QRCode from '../../components/QrcodeComponent'
 import './index.css'
 
 export default class Index extends Component {
@@ -14,10 +14,17 @@ export default class Index extends Component {
       this.setState({
         text: Date.now() + '',
       })
-    }, 1000)
+    }, 3000)
   }
 
-  config = {
+  /**
+   * 指定config的类型声明为: Taro.Config
+   *
+   * 由于 typescript 对于 object 类型推导只能推出 Key 的基本类型
+   * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
+   * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
+   */
+  config: Config = {
     navigationBarTitleText: '首页',
   }
 
@@ -30,6 +37,7 @@ export default class Index extends Component {
         <View className='qrcode'>
           <QRCode text={this.state.text} size={300} />
         </View>
+        <View>{this.state.text}</View>
       </View>
     )
   }

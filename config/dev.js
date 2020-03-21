@@ -4,6 +4,6 @@ module.exports = {
     NODE_ENV: '"development"',
   },
   defineConstants: {},
-  weapp: {},
+  mini: {},
   h5: {},
 }

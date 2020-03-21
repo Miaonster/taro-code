@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 import Nerv from 'nervjs'
 import { renderToString } from 'nerv-server'
-import QRCode from '../../../.temp/components/Qrcode'
+import QRCode from '../../../.temp/components/QrcodeComponent'
 
 describe('QRCode test', () => {
   it('hello world', () => {

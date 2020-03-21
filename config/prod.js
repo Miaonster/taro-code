@@ -1,10 +1,10 @@
 // eslint-disable-next-line import/no-commonjs
 module.exports = {
   env: {
-    NODE_ENV: '"production"',
+    NODE_ENV: '"production"'
   },
   defineConstants: {},
-  weapp: {},
+  mini: {},
   h5: {
     /**
      * 如果h5端编译后体积过大，可以使用webpack-bundle-analyzer插件对打包体积进行分析。
@@ -14,5 +14,5 @@ module.exports = {
      *     .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin, [])
      * }
      */
-  },
+  }
 }

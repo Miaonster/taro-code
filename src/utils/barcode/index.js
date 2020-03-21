@@ -97,4 +97,5 @@ export default function barcode({ text, scale = 4 }) {
       '\x00\x00\x00\x00' // 0 important colors (means all colors are important)
     return 'data:image/bmp;base64,' + btoa(header + imgdata)
   }
+  return ''
 }
