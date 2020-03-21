@@ -1,6 +1,6 @@
 {
   "name": "taro-code",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Taro.js barcode & qrcode",
   "homepage": "https://github.com/miaonster/taro-code",
   "license": "MIT",
@@ -42,9 +42,8 @@
     }
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
+    "*.{js|ts|tsx}": [
+      "eslint --fix"
     ]
   },
   "config": {
