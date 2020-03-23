@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/Miaonster/taro-code/compare/v2.1.0...v2.2.0) (2020-03-23)
+
+
+### Features
+
+* upgrade taro to 2.0.7 ([c3fd489](https://github.com/Miaonster/taro-code/commit/c3fd4898351333fa3e03f95aed1a38ceae09d772))
+
 ## [2.1.0](https://github.com/Miaonster/taro-code/compare/v2.0.4...v2.1.0) (2020-02-27)
 
 
