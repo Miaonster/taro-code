@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import Barcode from '../../components/Barcode'
-import QRCode from '../../components/Qrcode'
+import QRCode from '../../components/QRCode'
 import './index.css'
 
 export default class Index extends Component {

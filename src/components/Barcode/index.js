@@ -19,7 +19,7 @@ BarCode.defaultProps = {
 }
 
 BarCode.propTypes = {
-  text: PropTypes.string,
+  text: PropTypes.string.isRequired,
   scale: PropTypes.number,
   width: PropTypes.number,
   height: PropTypes.number,

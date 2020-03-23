@@ -6,10 +6,11 @@
   "license": "MIT",
   "author": "miaonster <miaonster17@gmail.com>",
   "files": [
-    "dist"
+    "lib",
+    "types"
   ],
   "type": "module",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "build": "export TARO_BUILD_TYPE=ui && taro build --ui",
     "dev:alipay": "taro build --type alipay --watch",
