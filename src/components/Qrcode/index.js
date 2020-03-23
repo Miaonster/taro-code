@@ -21,9 +21,9 @@ QRCode.defaultProps = {
 }
 
 QRCode.propTypes = {
+  text: PropTypes.string.isRequired,
   size: PropTypes.number,
   scale: PropTypes.number,
-  text: PropTypes.string,
   errorCorrectLevel: PropTypes.string,
   typeNumber: PropTypes.number,
 }
