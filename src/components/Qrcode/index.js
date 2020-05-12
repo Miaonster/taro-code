@@ -4,6 +4,10 @@ import { Image } from '@tarojs/components'
 import { createQrCodeImg } from '../../utils/qrcode'
 
 function QRCode({ text, size, scale, typeNumber, errorCorrectLevel }) {
+  console.log(
+    123, 123
+    ,12312123
+  )
   const image = useMemo(() => {
     const options = { errorCorrectLevel, typeNumber, size: size * scale }
     return createQrCodeImg(text, options)
