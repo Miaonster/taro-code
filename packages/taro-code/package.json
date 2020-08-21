@@ -1,0 +1,77 @@
+{
+  "name": "taro-code",
+  "version": "3.0.0",
+  "description": "Taro.js barcode & qrcode",
+  "browser": "dist/index.umd.js",
+  "module": "dist/index.esm.js",
+  "main": "dist/index.js",
+  "source": "src/index.ts",
+  "scripts": {
+    "dev": "yarn run dev:lib",
+    "dev:lib": "tsc --project ./tsconfig.build.json --watch --incremental",
+    "build": "yarn run build:rollup && yarn run build:lib",
+    "build:lib": "tsc --project ./tsconfig.build.json",
+    "build:rollup": "rollup --config ./config/rollup.config.js",
+    "prepublishOnly": "yarn run clean && yarn run build",
+    "lint": "eslint ./src --fix",
+    "lint:style": "stylelint \"src/**/*.scss\" --syntax scss",
+    "lint:style-fix": "stylelint \"src/**/*.scss\" --syntax scss --fix",
+    "test": "cross-env NODE_ENV=test && jest --coverage",
+    "test:ci": "yarn run build:h5 && yarn run test",
+    "test:analyze": "rollup --config ./config/rollup.config.analyze.js",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "clean": "rimraf .temp dist lib coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miaonster/taro-code.git"
+  },
+  "keywords": [
+    "taro",
+    "qrcode",
+    "barcode"
+  ],
+  "files": [
+    "lib",
+    "dist",
+    "types"
+  ],
+  "author": "miaonster",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/miaonster/taro-code/issues"
+  },
+  "homepage": "https://github.com/miaonster/taro-code#readme",
+  "dependencies": {
+    "prop-types": "^15.7.2"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^15.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@tarojs/components": "^3.0.7",
+    "@tarojs/react": "^3.0.7",
+    "@types/classnames": "^2.2.10",
+    "@types/node": "^14.6.0",
+    "@types/react": "^16.9.46",
+    "@types/react-dom": "^16.9.8",
+    "cross-env": "^7.0.2",
+    "jest": "^26.4.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-test-renderer": "^16.13.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.26.4",
+    "rollup-plugin-copy": "^3.3.0",
+    "rollup-plugin-typescript2": "^0.27.2",
+    "rollup-plugin-visualizer": "^4.1.0",
+    "taro-testing-library": "^1.1.0",
+    "typescript": "^3.9.7"
+  },
+  "peerDependencies": {
+    "@tarojs/components": ">=3",
+    "@tarojs/react": ">=3",
+    "react": ">=16.13.0",
+    "react-dom": ">=16.13.0"
+  }
+}

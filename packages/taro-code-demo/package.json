@@ -1,0 +1,61 @@
+{
+  "private": true,
+  "name": "taro-code-demo",
+  "version": "3.0.0",
+  "description": "Taro.js barcode & qrcode",
+  "homepage": "https://github.com/miaonster/taro-code",
+  "license": "MIT",
+  "author": "miaonster <miaonster17@gmail.com>",
+  "templateInfo": {
+    "name": "default",
+    "typescript": true,
+    "css": "sass"
+  },
+  "scripts": {
+    "build": "yarn run build:h5",
+    "build:weapp": "taro build --type weapp",
+    "build:swan": "taro build --type swan",
+    "build:alipay": "taro build --type alipay",
+    "build:tt": "taro build --type tt",
+    "build:h5": "taro build --type h5",
+    "build:rn": "taro build --type rn",
+    "build:qq": "taro build --type qq",
+    "build:quickapp": "taro build --type quickapp",
+    "dev:weapp": "yarn run build:weapp --watch",
+    "dev:swan": "yarn run build:swan --watch",
+    "dev:alipay": "yarn run build:alipay --watch",
+    "dev:tt": "yarn run build:tt --watch",
+    "dev:h5": "yarn run build:h5 --watch",
+    "dev:rn": "yarn run build:rn --watch",
+    "dev:qq": "yarn run build:qq --watch",
+    "dev:quickapp": "yarn run build:quickapp --watch",
+    "clean": "rimraf .temp dist"
+  },
+  "browserslist": [
+    "last 3 versions",
+    "Android >= 4.1",
+    "ios >= 8"
+  ],
+  "dependencies": {
+    "@babel/runtime": "^7.7.7",
+    "@tarojs/components": "~3.0.2",
+    "@tarojs/react": "~3.0.2",
+    "@tarojs/runtime": "~3.0.2",
+    "@tarojs/taro": "~3.0.2",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "taro-code": "file:../taro-code"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.0",
+    "@tarojs/cli": "~3.0.2",
+    "@tarojs/mini-runner": "~3.0.2",
+    "@tarojs/webpack-runner": "~3.0.2",
+    "@types/react": "^16.0.0",
+    "@types/webpack-env": "^1.13.6",
+    "babel-preset-taro": "~3.0.2",
+    "eslint-config-taro": "~3.0.2",
+    "rimraf": "^3.0.2",
+    "typescript": "^3.8.3"
+  }
+}

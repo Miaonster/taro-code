@@ -1,0 +1,17 @@
+{
+  "packages": [
+    "packages/taro-code"
+  ],
+  "command": {
+    "publish": {
+      "message": "chore(release): publish %s"
+    },
+    "create": {
+      "homepage": "https://github.com/miaonster/taro-code",
+      "license": "MIT"
+    }
+  },
+  "version": "3.0.0",
+  "npmClient": "yarn",
+  "useWorkspaces": true
+}
