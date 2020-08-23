@@ -33,7 +33,7 @@ var qrcode: any = function (typeNumber, errorCorrectLevel) {
   var _modules: any = null
   var _moduleCount = 0
   var _dataCache: any = null
-  var _dataList = []
+  var _dataList: any[] = []
 
   var _this: any = {}
 
@@ -446,7 +446,7 @@ var qrcode: any = function (typeNumber, errorCorrectLevel) {
 // ---------------------------------------------------------------------
 
 qrcode.stringToBytes = function (s) {
-  var bytes = []
+  var bytes: any[] = []
   for (var i = 0; i < s.length; i += 1) {
     var c = s.charCodeAt(i)
     bytes.push(c & 0xff)
@@ -497,7 +497,7 @@ qrcode.createStringToBytes = function (unicodeData, numChars) {
   var unknownChar = '?'.charCodeAt(0)
 
   return function (s) {
-    var bytes = []
+    var bytes: any[] = []
     for (var i = 0; i < s.length; i += 1) {
       var c = s.charCodeAt(i)
       if (c < 128) {
@@ -1177,7 +1177,7 @@ var QRRSBlock = (function () {
 
     var length = rsBlock.length / 3
 
-    var list = []
+    var list: any[] = []
 
     for (var i = 0; i < length; i += 1) {
       var count = rsBlock[i * 3 + 0]
@@ -1200,7 +1200,7 @@ var QRRSBlock = (function () {
 // ---------------------------------------------------------------------
 
 var qrBitBuffer = function () {
-  var _buffer = []
+  var _buffer: any[] = []
   var _length = 0
 
   var _this: any = {}
@@ -1312,7 +1312,7 @@ var qr8BitByte = function (data) {
 // ---------------------------------------------------------------------
 
 var byteArrayOutputStream = function () {
-  var _bytes = []
+  var _bytes: any[] = []
 
   var _this: any = {}
 
