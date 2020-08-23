@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "taro-code-demo",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Taro.js barcode & qrcode",
   "homepage": "https://github.com/miaonster/taro-code",
   "license": "MIT",
