@@ -175,7 +175,7 @@ function stringToCode128 (text) {
 
   // if no codeset changes this will end up with bytes.length+3
   // start, checksum and stop
-  let codes = new Array()
+  let codes = []
 
   switch (barc.currcs) {
     case CODESET.A:

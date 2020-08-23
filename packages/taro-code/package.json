@@ -43,6 +43,8 @@
   },
   "homepage": "https://github.com/miaonster/taro-code#readme",
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.9.1",
+    "eslint": "^7.7.0",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {

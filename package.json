@@ -12,6 +12,7 @@
     ]
   },
   "scripts": {
+    "lint": "lerna run lint",
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
     "build:component": "lerna run --scope taro-code build",

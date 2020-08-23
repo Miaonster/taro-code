@@ -12,6 +12,7 @@
     "css": "sass"
   },
   "scripts": {
+    "lint": "eslint ./src --fix",
     "build": "yarn run build:h5",
     "build:weapp": "taro build --type weapp",
     "build:swan": "taro build --type swan",
@@ -42,6 +43,8 @@
     "@tarojs/react": "~3.0.2",
     "@tarojs/runtime": "~3.0.2",
     "@tarojs/taro": "~3.0.2",
+    "@typescript-eslint/eslint-plugin": "^3.9.1",
+    "eslint": "^7.7.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "taro-code": "file:../taro-code"
