@@ -6,3 +6,5 @@ node_modules/
 yarn-error.log
 lib/
 .vscode/
+*.tgz
+coverage
