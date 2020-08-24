@@ -4,7 +4,9 @@
   ],
   "command": {
     "publish": {
-      "message": "chore(release): publish %s"
+      "message": "chore(release): publish %s",
+      "conventionalCommits": true,
+      "yes": true
     },
     "create": {
       "homepage": "https://github.com/miaonster/taro-code",
