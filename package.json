@@ -17,7 +17,8 @@
     "build:component": "lerna run --scope taro-code build",
     "clean": "lerna run clean",
     "clean:component": "lerna run --scope taro-code clean",
-    "publish": "lerna publish from-git --yes"
+    "publish": "lerna publish from-git --yes",
+    "version": "lerna version"
   },
   "husky": {
     "hooks": {
