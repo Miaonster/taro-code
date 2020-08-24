@@ -48,6 +48,7 @@ class Code extends Taro.Component {
 | `width`  | `number` | `300`   |
 | `height` | `number` | `80`    |
 | `scale`  | `number` | `4`     |
+| `style`  | `object` | `{}`     |
 
 ### QRCode
 
@@ -58,6 +59,7 @@ class Code extends Taro.Component {
 | `scale`             | `number` | `4`     |
 | `typeNumber`        | `number` | `2`     |
 | `errorCorrectLevel` | `string` | `'M'`   |
+| `style`             | `object` | `{}`    |
 
 
 ## Screenshot
