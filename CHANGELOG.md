@@ -1,3 +1,21 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [3.1.0](https://github.com/Miaonster/taro-code/compare/v2.1.0...v3.1.0) (2020-08-24)
+
+
+### Features
+
+* taro-3.0 ([#21](https://github.com/Miaonster/taro-code/issues/21)) ([e9822a2](https://github.com/Miaonster/taro-code/commit/e9822a26a0dd3d940753b6d12b91193a252f3f0a))
+* upgrade taro to 2.0.7 ([c3fd489](https://github.com/Miaonster/taro-code/commit/c3fd4898351333fa3e03f95aed1a38ceae09d772))
+* upgrade taro-code to 2.2.3 ([351dd81](https://github.com/Miaonster/taro-code/commit/351dd81c5c25efa2840b2ab2f88bc425be1e9ab8))
+
+
+
+
+
 # Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
