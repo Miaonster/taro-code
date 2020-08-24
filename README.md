@@ -7,9 +7,9 @@
 ### Install
 
 ```
-yarn add taro-code
+yarn add taro-code@2
 # or
-npm install taro-code
+npm install taro-code@2
 ```
 
 ### Usage
