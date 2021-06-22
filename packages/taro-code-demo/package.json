@@ -39,26 +39,25 @@
   ],
   "dependencies": {
     "@babel/runtime": "^7.7.7",
-    "@tarojs/components": "~3.0.2",
-    "@tarojs/react": "~3.0.2",
-    "@tarojs/runtime": "~3.0.2",
-    "@tarojs/taro": "~3.0.2",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
+    "@tarojs/components": "3.2.13",
+    "@tarojs/react": "3.2.13",
+    "@tarojs/runtime": "3.2.13",
+    "@tarojs/taro": "3.2.13",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "react-test-renderer": "^16.13.1",
     "taro-code": "file:../taro-code"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
-    "@tarojs/cli": "~3.0.2",
-    "@tarojs/mini-runner": "~3.0.2",
-    "@tarojs/webpack-runner": "~3.0.2",
-    "@types/react": "^16.0.0",
-    "@types/webpack-env": "^1.13.6",
-    "@typescript-eslint/eslint-plugin": "^3.9.1",
-    "babel-preset-taro": "~3.0.2",
-    "eslint": "^7.7.0",
-    "eslint-config-taro": "~3.0.2",
+    "@tarojs/cli": "3.2.13",
+    "@tarojs/mini-runner": "3.2.13",
+    "@tarojs/webpack-runner": "3.2.13",
+    "@types/jest": "^26.0.23",
+    "babel-plugin-istanbul": "^6.0.0",
+    "babel-preset-taro": "3.2.13",
+    "nervjs": "^1.5.7",
     "rimraf": "^3.0.2",
-    "typescript": "^3.8.3"
+    "typescript": "4.3.2"
   }
 }

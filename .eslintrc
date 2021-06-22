@@ -1,17 +1,35 @@
 {
-  "extends": ["taro/react", "standard"],
-  "plugins": ["prettier"],
-  "settings": {
-    "react": {
-      "version": "detect"
+  "extends": [
+    "taro/react",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "standard-with-typescript",
+    "plugin:jest/recommended"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "env": {
+    "jest/globals": true
+  },
+  "overrides": [
+    {
+      "files": [
+        "packages/**/*.test.tsx",
+        "packages/**/*.test.js"
+      ],
+      "rules": {
+        "taro/no-stateless-component": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/no-find-dom-node": "off",
+        "no-unused-vars": [
+          "error",
+          {
+            "varsIgnorePattern": "Nerv"
+          }
+        ]
+      }
     }
-  },
-  "rules": {},
-  "globals": {
-    "describe": true,
-    "beforeEach": true,
-    "it": true,
-    "expect": true
-  },
-  "parser": "babel-eslint"
+  ]
 }

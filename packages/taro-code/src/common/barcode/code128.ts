@@ -1,6 +1,4 @@
-/* eslint-disable no-shadow */
-/* eslint-disable no-array-constructor */
-/* eslint-disable eqeqeq */
+/* eslint-disable */
 const CHAR_TILDE = 126
 const CODE_FNC1 = 102
 

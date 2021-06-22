@@ -1,3 +1,4 @@
+/* eslint-disable */
 import code128 from './code128'
 
 function getLittleEndianHex (value) {
@@ -45,13 +46,26 @@ function btoa (string) {
   return rest ? result.slice(0, rest - 3) + '==='.substring(rest) : result
 }
 
-function getBuffer ({ pieces, width, extraBytes, scale = 1 }) {
+function getBuffer ({ pieces, width, extraBytes, scale = 1, whiteColor = '', blackColor = '' }) {
+  const black = blackColor.split('')
+  const white = whiteColor.split('')
+  const blackColors = [
+    parseInt(`${black[5]}${black[6]}`, 16),
+    parseInt(`${black[3]}${black[4]}`, 16),
+    parseInt(`${black[1]}${black[2]}`, 16),
+  ]
+  const whiteColors = [
+    parseInt(`${white[5]}${white[6]}`, 16),
+    parseInt(`${white[3]}${white[4]}`, 16),
+    parseInt(`${white[1]}${white[2]}`, 16),
+  ]
+
   return pieces
     .map((piece) => Array(scale).fill(piece))
     .reduce((acc, x) => acc.concat(x), [])
     .map((piece, index) => {
-      const code = parseInt(piece) ? 0 : 255
-      const colors = [code, code, code]
+      // const code =  ? 0 : 255
+      const colors = parseInt(piece) ? blackColors : whiteColors
       if (!((index % width) - 1) && extraBytes) {
         return colors.concat(Array(extraBytes).fill(0))
       } else {
@@ -63,7 +77,7 @@ function getBuffer ({ pieces, width, extraBytes, scale = 1 }) {
     .join('')
 }
 
-export default function barcode ({ text, scale = 4 }) {
+export default function barcode ({ text, scale = 4, blackColor, whiteColor }) {
   if (text) {
     const pieces = code128(text)
     const width = pieces.length * scale
@@ -76,7 +90,7 @@ export default function barcode ({ text, scale = 4 }) {
     const numFileBytes = getLittleEndianHex(colorSize)
     const w = getLittleEndianHex(width)
     const h = getLittleEndianHex(height)
-    const imgdata = getBuffer({ pieces, width, extraBytes, scale })
+    const imgdata = getBuffer({ pieces, width, extraBytes, scale, blackColor, whiteColor })
 
     const header =
       'BM' + // Signature

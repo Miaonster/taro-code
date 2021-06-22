@@ -5,9 +5,13 @@
     "module": "es6",
     "downlevelIteration": true,
     "baseUrl": ".",
+    "declaration": true,
     "types": ["node"]
   },
   "include": [
     "src/**/*"
+  ],
+  "exclude": [
+    "src/**/*.test.*"
   ]
 }

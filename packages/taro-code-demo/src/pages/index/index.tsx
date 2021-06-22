@@ -1,35 +1,45 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View } from '@tarojs/components'
-import { Barcode, QRCode } from 'taro-code'
+import { Barcode, QRCode } from '../../../../taro-code/lib'
 import './index.css'
 
-class Index extends Component {
-  state = {
-    text: 'hello',
-    size: 300
-  }
+const Index: React.FC = () => {
+  const [text, setText] = useState('hello')
+  const [size, setSize] = useState(300)
+  const [foregroundColor] = useState('#F00000')
+  const [backgroundColor] = useState('#FFFFFF')
 
-  componentDidMount () {
-    setInterval(() => {
-      this.setState({
-        text: Date.now() + '',
-        size: Math.floor(Math.random() * (300 - 200) + 200)
-      })
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setText(`${Date.now()}`)
+      setSize(Math.floor(Math.random() * (300 - 200) + 200))
     }, 2000)
-  }
+    return () => {
+      clearInterval(timer)
+    }
+  }, [])
 
-  render () {
-    return (
-      <View className='index'>
-        <View className='barcode'>
-          <Barcode text={this.state.text} style={{ width: this.state.size + 'px' }} height={60} />
-        </View>
-        <View className='qrcode'>
-          <QRCode text={this.state.text} size={this.state.size} />
-        </View>
+  return (
+    <View className='index'>
+      <View className='barcode'>
+        <Barcode
+          text={text}
+          width={size}
+          height={60}
+          foregroundColor={foregroundColor}
+          backgroundColor={backgroundColor}
+        />
       </View>
-    )
-  }
+      <View className='qrcode'>
+        <QRCode
+          text={text}
+          size={size}
+          foregroundColor={foregroundColor}
+          backgroundColor={backgroundColor}
+        />
+      </View>
+    </View>
+  )
 }
 
 export default Index
