@@ -42,26 +42,30 @@ class Code extends Taro.Component {
 
 ### Barcode
 
-| Prop        | Type     | Default |
-| ----------- | -------- | ------- |
-| `text`      | `string` | `''`    |
-| `width`     | `number` | `300`   |
-| `height`    | `number` | `80`    |
-| `scale`     | `number` | `4`     |
-| `style`     | `object` | `{}`    |
-| `className` | `string` |         |
+| Prop              | Type     | Default   |
+| ----------------- | -------- | --------- |
+| `text`            | `string` | `''`      |
+| `width`           | `number` | `300`     |
+| `height`          | `number` | `80`      |
+| `scale`           | `number` | `4`       |
+| `style`           | `object` | `{}`      |
+| `className`       | `string` |           |
+| `foregroundColor` | `string` | `#000000` |
+| `backgroundColor` | `string` | `#FFFFFF` |
 
 ### QRCode
 
-| Prop                | Type                       | Default |
-| ------------------- | -------------------------- | ------- |
-| `text`              | `string`                   | `''`    |
-| `size`              | `number`                   | `300`   |
-| `scale`             | `number`                   | `4`     |
-| `typeNumber`        | `number`                   | `2`     |
-| `errorCorrectLevel` | `'L' \| 'M' \| 'Q' \| 'H'` | `'M'`   |
-| `style`             | `object`                   | `{}`    |
-| `className`         | `string`                   |         |
+| Prop                | Type                       | Default   |
+| ------------------- | -------------------------- | --------- |
+| `text`              | `string`                   | `''`      |
+| `size`              | `number`                   | `300`     |
+| `scale`             | `number`                   | `4`       |
+| `typeNumber`        | `number`                   | `2`       |
+| `errorCorrectLevel` | `'L' \| 'M' \| 'Q' \| 'H'` | `'M'`     |
+| `style`             | `object`                   | `{}`      |
+| `className`         | `string`                   |           |
+| `foregroundColor`   | `string`                   | `#000000` |
+| `backgroundColor`   | `string`                   | `#FFFFFF` |
 
 ## Screenshot
 
