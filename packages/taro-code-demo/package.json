@@ -46,7 +46,7 @@
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-test-renderer": "^16.13.1",
-    "taro-code": "file:../taro-code/lib"
+    "taro-code": "file:../taro-code"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
