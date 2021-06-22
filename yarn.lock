@@ -16658,8 +16658,10 @@ tar@^6.0.2:
     mkdirp "^1.0.3"
     yallist "^4.0.0"
 
-"taro-code@file:packages/taro-code/lib":
-  version "0.0.0"
+"taro-code@file:packages/taro-code":
+  version "3.2.0"
+  dependencies:
+    react-test-renderer "^17.0.2"
 
 taro-css-to-react-native@3.2.13:
   version "3.2.13"

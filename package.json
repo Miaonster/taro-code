@@ -20,11 +20,6 @@
     "publish": "lerna publish from-git --yes",
     "version": "lerna version"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.js": [
       "eslint --fix",
@@ -37,7 +32,7 @@
     }
   },
   "dependencies": {},
-  "devDependencies": { 
+  "devDependencies": {
     "@typescript-eslint/eslint-plugin": "4",
     "@typescript-eslint/parser": "^4.15.1",
     "babel-preset-taro": "3.2.13",
