@@ -20,11 +20,6 @@
     "publish": "lerna publish from-git --yes",
     "version": "lerna version"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.js": [
       "eslint --fix",
