@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/Miaonster/taro-code/compare/v3.2.0...v3.3.0) (2021-06-22)
+
+
+### Bug Fixes
+
+* update version script ([c86a443](https://github.com/Miaonster/taro-code/commit/c86a443a3fdf8faf21370b5b2c37bec385712c50))
+
+
+### Features
+
+* add foregroundColor, backgroundColor ([#37](https://github.com/Miaonster/taro-code/issues/37)) ([f0ced87](https://github.com/Miaonster/taro-code/commit/f0ced8728181c298cc44fec110d388666a1b3092))
+* update doc ([#38](https://github.com/Miaonster/taro-code/issues/38)) ([a37d9d3](https://github.com/Miaonster/taro-code/commit/a37d9d3a4a2cabb6d925317ebd25c1c4ed1a9a57))
+
+
+
+
+
 # [3.2.0](https://github.com/Miaonster/taro-code/compare/v3.1.0...v3.2.0) (2020-08-24)
 
 
