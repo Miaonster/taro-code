@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "taro-code",
+  "name": "taro-code-root",
   "description": "Taro.js barcode & qrcode",
   "homepage": "https://github.com/miaonster/taro-code",
   "license": "MIT",
