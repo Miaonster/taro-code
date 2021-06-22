@@ -18,7 +18,7 @@
     "clean": "lerna run clean",
     "clean:component": "lerna run --scope taro-code clean",
     "publish": "lerna publish from-git --yes",
-    "version": "lerna version"
+    "update-version": "lerna version"
   },
   "lint-staged": {
     "*.js": [
