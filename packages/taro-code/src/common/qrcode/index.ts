@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable no-shadow */
 /* eslint-disable no-redeclare */
 /* eslint-disable eqeqeq */
@@ -19,31 +22,32 @@
 //
 // ---------------------------------------------------------------------
 
+/* eslint-disable */
 /**
  * qrcode
  * @param typeNumber 1 to 40
  * @param errorCorrectLevel 'L','M','Q','H'
  */
-var qrcode: any = function (typeNumber, errorCorrectLevel) {
-  var PAD0 = 0xec
-  var PAD1 = 0x11
+const qrcode = function (typeNumber: number, errorCorrectLevel: 'L' | 'M' | 'Q' | 'H') {
+  const PAD0 = 0xec
+  const PAD1 = 0x11
 
-  var _typeNumber = typeNumber
-  var _errorCorrectLevel = QRErrorCorrectLevel[errorCorrectLevel]
-  var _modules: any = null
-  var _moduleCount = 0
-  var _dataCache: any = null
-  var _dataList: any[] = []
+  const _typeNumber = typeNumber
+  const _errorCorrectLevel = QRErrorCorrectLevel[errorCorrectLevel]
+  let _modules: any = null
+  let _moduleCount = 0
+  let _dataCache: any = null
+  const _dataList: any[] = []
 
-  var _this: any = {}
+  const _this: any = {}
 
-  var makeImpl = function (test, maskPattern) {
+  const makeImpl = function (test, maskPattern): any {
     _moduleCount = _typeNumber * 4 + 17
     _modules = (function (moduleCount) {
-      var modules = new Array(moduleCount)
-      for (var row = 0; row < moduleCount; row += 1) {
+      const modules = new Array(moduleCount)
+      for (let row = 0; row < moduleCount; row += 1) {
         modules[row] = new Array(moduleCount)
-        for (var col = 0; col < moduleCount; col += 1) {
+        for (let col = 0; col < moduleCount; col += 1) {
           modules[row][col] = null
         }
       }
@@ -69,10 +73,10 @@ var qrcode: any = function (typeNumber, errorCorrectLevel) {
   }
 
   var setupPositionProbePattern = function (row, col) {
-    for (var r = -1; r <= 7; r += 1) {
+    for (let r = -1; r <= 7; r += 1) {
       if (row + r <= -1 || _moduleCount <= row + r) continue
 
-      for (var c = -1; c <= 7; c += 1) {
+      for (let c = -1; c <= 7; c += 1) {
         if (col + c <= -1 || _moduleCount <= col + c) continue
 
         if (
@@ -88,14 +92,14 @@ var qrcode: any = function (typeNumber, errorCorrectLevel) {
     }
   }
 
-  var getBestMaskPattern = function () {
-    var minLostPoint = 0
-    var pattern = 0
+  const getBestMaskPattern = function () {
+    let minLostPoint = 0
+    let pattern = 0
 
-    for (var i = 0; i < 8; i += 1) {
+    for (let i = 0; i < 8; i += 1) {
       makeImpl(true, i)
 
-      var lostPoint = QRUtil.getLostPoint(_this)
+      const lostPoint = QRUtil.getLostPoint(_this)
 
       if (i == 0 || minLostPoint > lostPoint) {
         minLostPoint = lostPoint
@@ -107,14 +111,14 @@ var qrcode: any = function (typeNumber, errorCorrectLevel) {
   }
 
   var setupTimingPattern = function () {
-    for (var r = 8; r < _moduleCount - 8; r += 1) {
+    for (let r = 8; r < _moduleCount - 8; r += 1) {
       if (_modules[r][6] != null) {
         continue
       }
       _modules[r][6] = r % 2 == 0
     }
 
-    for (var c = 8; c < _moduleCount - 8; c += 1) {
+    for (let c = 8; c < _moduleCount - 8; c += 1) {
       if (_modules[6][c] != null) {
         continue
       }
@@ -123,19 +127,19 @@ var qrcode: any = function (typeNumber, errorCorrectLevel) {
   }
 
   var setupPositionAdjustPattern = function () {
-    var pos = QRUtil.getPatternPosition(_typeNumber)
+    const pos = QRUtil.getPatternPosition(_typeNumber)
 
-    for (var i = 0; i < pos.length; i += 1) {
-      for (var j = 0; j < pos.length; j += 1) {
-        var row = pos[i]
-        var col = pos[j]
+    for (let i = 0; i < pos.length; i += 1) {
+      for (let j = 0; j < pos.length; j += 1) {
+        const row = pos[i]
+        const col = pos[j]
 
         if (_modules[row][col] != null) {
           continue
         }
 
-        for (var r = -2; r <= 2; r += 1) {
-          for (var c = -2; c <= 2; c += 1) {
+        for (let r = -2; r <= 2; r += 1) {
+          for (let c = -2; c <= 2; c += 1) {
             if (r == -2 || r == 2 || c == -2 || c == 2 || (r == 0 && c == 0)) {
               _modules[row + r][col + c] = true
             } else {
@@ -148,7 +152,7 @@ var qrcode: any = function (typeNumber, errorCorrectLevel) {
   }
 
   var setupTypeNumber = function (test) {
-    var bits = QRUtil.getBCHTypeNumber(_typeNumber)
+    const bits = QRUtil.getBCHTypeNumber(_typeNumber)
 
     for (var i = 0; i < 18; i += 1) {
       var mod = !test && ((bits >> i) & 1) == 1
@@ -162,8 +166,8 @@ var qrcode: any = function (typeNumber, errorCorrectLevel) {
   }
 
   var setupTypeInfo = function (test, maskPattern) {
-    var data = (_errorCorrectLevel << 3) | maskPattern
-    var bits = QRUtil.getBCHTypeInfo(data)
+    const data = (_errorCorrectLevel << 3) | maskPattern
+    const bits = QRUtil.getBCHTypeInfo(data)
 
     // vertical
     for (var i = 0; i < 15; i += 1) {
@@ -196,25 +200,25 @@ var qrcode: any = function (typeNumber, errorCorrectLevel) {
   }
 
   var mapData = function (data, maskPattern) {
-    var inc = -1
-    var row = _moduleCount - 1
-    var bitIndex = 7
-    var byteIndex = 0
-    var maskFunc = QRUtil.getMaskFunction(maskPattern)
+    let inc = -1
+    let row = _moduleCount - 1
+    let bitIndex = 7
+    let byteIndex = 0
+    const maskFunc = QRUtil.getMaskFunction(maskPattern)
 
-    for (var col = _moduleCount - 1; col > 0; col -= 2) {
+    for (let col = _moduleCount - 1; col > 0; col -= 2) {
       if (col == 6) col -= 1
 
       while (true) {
-        for (var c = 0; c < 2; c += 1) {
+        for (let c = 0; c < 2; c += 1) {
           if (_modules[row][col - c] == null) {
-            var dark = false
+            let dark = false
 
             if (byteIndex < data.length) {
               dark = ((data[byteIndex] >>> bitIndex) & 1) == 1
             }
 
-            var mask = maskFunc(row, col - c)
+            const mask = maskFunc(row, col - c)
 
             if (mask) {
               dark = !dark
@@ -241,18 +245,18 @@ var qrcode: any = function (typeNumber, errorCorrectLevel) {
     }
   }
 
-  var createBytes = function (buffer, rsBlocks) {
-    var offset = 0
+  const createBytes = function (buffer, rsBlocks) {
+    let offset = 0
 
-    var maxDcCount = 0
-    var maxEcCount = 0
+    let maxDcCount = 0
+    let maxEcCount = 0
 
-    var dcdata = new Array(rsBlocks.length)
-    var ecdata = new Array(rsBlocks.length)
+    const dcdata = new Array(rsBlocks.length)
+    const ecdata = new Array(rsBlocks.length)
 
     for (var r = 0; r < rsBlocks.length; r += 1) {
-      var dcCount = rsBlocks[r].dataCount
-      var ecCount = rsBlocks[r].totalCount - dcCount
+      const dcCount = rsBlocks[r].dataCount
+      const ecCount = rsBlocks[r].totalCount - dcCount
 
       maxDcCount = Math.max(maxDcCount, dcCount)
       maxEcCount = Math.max(maxEcCount, ecCount)
@@ -264,24 +268,24 @@ var qrcode: any = function (typeNumber, errorCorrectLevel) {
       }
       offset += dcCount
 
-      var rsPoly = QRUtil.getErrorCorrectPolynomial(ecCount)
-      var rawPoly = qrPolynomial(dcdata[r], rsPoly.getLength() - 1)
+      const rsPoly = QRUtil.getErrorCorrectPolynomial(ecCount)
+      const rawPoly = qrPolynomial(dcdata[r], rsPoly.getLength() - 1)
 
-      var modPoly = rawPoly.mod(rsPoly)
+      const modPoly = rawPoly.mod(rsPoly)
       ecdata[r] = new Array(rsPoly.getLength() - 1)
       for (var i = 0; i < ecdata[r].length; i += 1) {
-        var modIndex = i + modPoly.getLength() - ecdata[r].length
+        const modIndex = i + modPoly.getLength() - ecdata[r].length
         ecdata[r][i] = modIndex >= 0 ? modPoly.getAt(modIndex) : 0
       }
     }
 
-    var totalCodeCount = 0
+    let totalCodeCount = 0
     for (var i = 0; i < rsBlocks.length; i += 1) {
       totalCodeCount += rsBlocks[i].totalCount
     }
 
-    var data = new Array(totalCodeCount)
-    var index = 0
+    const data = new Array(totalCodeCount)
+    let index = 0
 
     for (var i = 0; i < maxDcCount; i += 1) {
       for (var r = 0; r < rsBlocks.length; r += 1) {
@@ -305,12 +309,12 @@ var qrcode: any = function (typeNumber, errorCorrectLevel) {
   }
 
   var createData = function (typeNumber, errorCorrectLevel, dataList) {
-    var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, errorCorrectLevel)
+    const rsBlocks = QRRSBlock.getRSBlocks(typeNumber, errorCorrectLevel)
 
-    var buffer = qrBitBuffer()
+    const buffer = qrBitBuffer()
 
     for (var i = 0; i < dataList.length; i += 1) {
-      var data = dataList[i]
+      const data = dataList[i]
       buffer.put(data.getMode(), 4)
       buffer.put(
         data.getLength(),
@@ -320,7 +324,7 @@ var qrcode: any = function (typeNumber, errorCorrectLevel) {
     }
 
     // calc num max data.
-    var totalDataCount = 0
+    let totalDataCount = 0
     for (var i = 0; i < rsBlocks.length; i += 1) {
       totalDataCount += rsBlocks[i].dataCount
     }
@@ -362,7 +366,7 @@ var qrcode: any = function (typeNumber, errorCorrectLevel) {
   }
 
   _this.addData = function (data) {
-    var newData = qr8BitByte(data)
+    const newData = qr8BitByte(data)
     _dataList.push(newData)
     _dataCache = null
   }
@@ -386,7 +390,7 @@ var qrcode: any = function (typeNumber, errorCorrectLevel) {
     cellSize = cellSize || 2
     margin = typeof margin === 'undefined' ? cellSize * 4 : margin
 
-    var qrHtml = ''
+    let qrHtml = ''
 
     qrHtml += '<table style="'
     qrHtml += ' border-width: 0px; border-style: none;'
@@ -395,10 +399,10 @@ var qrcode: any = function (typeNumber, errorCorrectLevel) {
     qrHtml += '">'
     qrHtml += '<tbody>'
 
-    for (var r = 0; r < _this.getModuleCount(); r += 1) {
+    for (let r = 0; r < _this.getModuleCount(); r += 1) {
       qrHtml += '<tr>'
 
-      for (var c = 0; c < _this.getModuleCount(); c += 1) {
+      for (let c = 0; c < _this.getModuleCount(); c += 1) {
         qrHtml += '<td style="'
         qrHtml += ' border-width: 0px; border-style: none;'
         qrHtml += ' border-collapse: collapse;'
@@ -420,22 +424,22 @@ var qrcode: any = function (typeNumber, errorCorrectLevel) {
     return qrHtml
   }
 
-  _this.createImgTag = function (cellSize, margin, size) {
+  _this.createImgTag = function (cellSize, margin, size, black, white) {
     cellSize = cellSize || 2
     margin = typeof margin === 'undefined' ? cellSize * 4 : margin
 
-    var min = margin
-    var max = _this.getModuleCount() * cellSize + margin
+    const min = margin
+    const max = _this.getModuleCount() * cellSize + margin
 
     return createImgTag(size, size, function (x, y) {
       if (min <= x && x < max && min <= y && y < max) {
-        var c = Math.floor((x - min) / cellSize)
-        var r = Math.floor((y - min) / cellSize)
+        const c = Math.floor((x - min) / cellSize)
+        const r = Math.floor((y - min) / cellSize)
         return _this.isDark(r, c) ? 0 : 1
       } else {
         return 1
       }
-    })
+    }, black, white)
   }
 
   return _this
@@ -446,9 +450,9 @@ var qrcode: any = function (typeNumber, errorCorrectLevel) {
 // ---------------------------------------------------------------------
 
 qrcode.stringToBytes = function (s) {
-  var bytes: any[] = []
-  for (var i = 0; i < s.length; i += 1) {
-    var c = s.charCodeAt(i)
+  const bytes: any[] = []
+  for (let i = 0; i < s.length; i += 1) {
+    const c = s.charCodeAt(i)
     bytes.push(c & 0xff)
   }
   return bytes
@@ -466,24 +470,24 @@ qrcode.stringToBytes = function (s) {
 qrcode.createStringToBytes = function (unicodeData, numChars) {
   // create conversion map.
 
-  var unicodeMap = (function () {
-    var bin = base64DecodeInputStream(unicodeData)
-    var read = function () {
-      var b = bin.read()
+  const unicodeMap = (function () {
+    const bin = base64DecodeInputStream(unicodeData)
+    const read = function () {
+      const b = bin.read()
       if (b == -1) throw new Error()
       return b
     }
 
-    var count = 0
-    var unicodeMap = {}
+    let count = 0
+    const unicodeMap = {}
     while (true) {
-      var b0 = bin.read()
+      const b0 = bin.read()
       if (b0 == -1) break
-      var b1 = read()
-      var b2 = read()
-      var b3 = read()
-      var k = String.fromCharCode((b0 << 8) | b1)
-      var v = (b2 << 8) | b3
+      const b1 = read()
+      const b2 = read()
+      const b3 = read()
+      const k = String.fromCharCode((b0 << 8) | b1)
+      const v = (b2 << 8) | b3
       unicodeMap[k] = v
       count += 1
     }
@@ -494,16 +498,16 @@ qrcode.createStringToBytes = function (unicodeData, numChars) {
     return unicodeMap
   })()
 
-  var unknownChar = '?'.charCodeAt(0)
+  const unknownChar = '?'.charCodeAt(0)
 
   return function (s) {
-    var bytes: any[] = []
-    for (var i = 0; i < s.length; i += 1) {
-      var c = s.charCodeAt(i)
+    const bytes: any[] = []
+    for (let i = 0; i < s.length; i += 1) {
+      const c = s.charCodeAt(i)
       if (c < 128) {
         bytes.push(c)
       } else {
-        var b = unicodeMap[s.charAt(i)]
+        const b = unicodeMap[s.charAt(i)]
         if (typeof b === 'number') {
           if ((b & 0xff) == b) {
             // 1byte
@@ -526,7 +530,7 @@ qrcode.createStringToBytes = function (unicodeData, numChars) {
 // QRMode
 // ---------------------------------------------------------------------
 
-var QRMode = {
+const QRMode = {
   MODE_NUMBER: 1 << 0,
   MODE_ALPHA_NUM: 1 << 1,
   MODE_8BIT_BYTE: 1 << 2,
@@ -548,7 +552,7 @@ var QRErrorCorrectLevel = {
 // QRMaskPattern
 // ---------------------------------------------------------------------
 
-var QRMaskPattern = {
+const QRMaskPattern = {
   PATTERN000: 0,
   PATTERN001: 1,
   PATTERN010: 2,
@@ -564,7 +568,7 @@ var QRMaskPattern = {
 // ---------------------------------------------------------------------
 
 var QRUtil = (function () {
-  var PATTERN_POSITION_TABLE = [
+  const PATTERN_POSITION_TABLE = [
     [],
     [6, 18],
     [6, 22],
@@ -606,9 +610,9 @@ var QRUtil = (function () {
     [6, 26, 54, 82, 110, 138, 166],
     [6, 30, 58, 86, 114, 142, 170]
   ]
-  var G15 =
+  const G15 =
     (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0)
-  var G18 =
+  const G18 =
     (1 << 12) |
     (1 << 11) |
     (1 << 10) |
@@ -617,12 +621,12 @@ var QRUtil = (function () {
     (1 << 5) |
     (1 << 2) |
     (1 << 0)
-  var G15_MASK = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1)
+  const G15_MASK = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1)
 
-  var _this: any = {}
+  const _this: any = {}
 
-  var getBCHDigit = function (data) {
-    var digit = 0
+  const getBCHDigit = function (data) {
+    let digit = 0
     while (data != 0) {
       digit += 1
       data >>>= 1
@@ -631,7 +635,7 @@ var QRUtil = (function () {
   }
 
   _this.getBCHTypeInfo = function (data) {
-    var d = data << 10
+    let d = data << 10
     while (getBCHDigit(d) - getBCHDigit(G15) >= 0) {
       d ^= G15 << (getBCHDigit(d) - getBCHDigit(G15))
     }
@@ -639,7 +643,7 @@ var QRUtil = (function () {
   }
 
   _this.getBCHTypeNumber = function (data) {
-    var d = data << 12
+    let d = data << 12
     while (getBCHDigit(d) - getBCHDigit(G18) >= 0) {
       d ^= G18 << (getBCHDigit(d) - getBCHDigit(G18))
     }
@@ -691,8 +695,8 @@ var QRUtil = (function () {
   }
 
   _this.getErrorCorrectPolynomial = function (errorCorrectLength) {
-    var a: any = qrPolynomial([1], 0)
-    for (var i = 0; i < errorCorrectLength; i += 1) {
+    let a: any = qrPolynomial([1], 0)
+    for (let i = 0; i < errorCorrectLength; i += 1) {
       a = a.multiply(qrPolynomial([1, QRMath.gexp(i)], 0))
     }
     return a
@@ -750,23 +754,23 @@ var QRUtil = (function () {
   }
 
   _this.getLostPoint = function (qrcode) {
-    var moduleCount = qrcode.getModuleCount()
+    const moduleCount = qrcode.getModuleCount()
 
-    var lostPoint = 0
+    let lostPoint = 0
 
     // LEVEL1
 
     for (var row = 0; row < moduleCount; row += 1) {
       for (var col = 0; col < moduleCount; col += 1) {
-        var sameCount = 0
-        var dark = qrcode.isDark(row, col)
+        let sameCount = 0
+        const dark = qrcode.isDark(row, col)
 
-        for (var r = -1; r <= 1; r += 1) {
+        for (let r = -1; r <= 1; r += 1) {
           if (row + r < 0 || moduleCount <= row + r) {
             continue
           }
 
-          for (var c = -1; c <= 1; c += 1) {
+          for (let c = -1; c <= 1; c += 1) {
             if (col + c < 0 || moduleCount <= col + c) {
               continue
             }
@@ -791,7 +795,7 @@ var QRUtil = (function () {
 
     for (var row = 0; row < moduleCount - 1; row += 1) {
       for (var col = 0; col < moduleCount - 1; col += 1) {
-        var count = 0
+        let count = 0
         if (qrcode.isDark(row, col)) count += 1
         if (qrcode.isDark(row + 1, col)) count += 1
         if (qrcode.isDark(row, col + 1)) count += 1
@@ -838,7 +842,7 @@ var QRUtil = (function () {
 
     // LEVEL4
 
-    var darkCount = 0
+    let darkCount = 0
 
     for (var col = 0; col < moduleCount; col += 1) {
       for (var row = 0; row < moduleCount; row += 1) {
@@ -848,7 +852,7 @@ var QRUtil = (function () {
       }
     }
 
-    var ratio = Math.abs((100 * darkCount) / moduleCount / moduleCount - 50) / 5
+    const ratio = Math.abs((100 * darkCount) / moduleCount / moduleCount - 50) / 5
     lostPoint += ratio * 10
 
     return lostPoint
@@ -862,8 +866,8 @@ var QRUtil = (function () {
 // ---------------------------------------------------------------------
 
 var QRMath: any = (function () {
-  var EXP_TABLE = new Array(256)
-  var LOG_TABLE = new Array(256)
+  const EXP_TABLE = new Array(256)
+  const LOG_TABLE = new Array(256)
 
   // initialize tables
   for (var i = 0; i < 8; i += 1) {
@@ -877,7 +881,7 @@ var QRMath: any = (function () {
     LOG_TABLE[EXP_TABLE[i]] = i
   }
 
-  var _this: any = {}
+  const _this: any = {}
 
   _this.glog = function (n) {
     if (n < 1) {
@@ -911,19 +915,19 @@ function qrPolynomial (num, shift) {
     throw new Error(num.length + '/' + shift)
   }
 
-  var _num = (function () {
-    var offset = 0
+  const _num = (function () {
+    let offset = 0
     while (offset < num.length && num[offset] == 0) {
       offset += 1
     }
-    var _num = new Array(num.length - offset + shift)
-    for (var i = 0; i < num.length - offset; i += 1) {
+    const _num = new Array(num.length - offset + shift)
+    for (let i = 0; i < num.length - offset; i += 1) {
       _num[i] = num[i + offset]
     }
     return _num
   })()
 
-  var _this: any = {}
+  const _this: any = {}
 
   _this.getAt = function (index) {
     return _num[index]
@@ -934,10 +938,10 @@ function qrPolynomial (num, shift) {
   }
 
   _this.multiply = function (e) {
-    var num = new Array(_this.getLength() + e.getLength() - 1)
+    const num = new Array(_this.getLength() + e.getLength() - 1)
 
-    for (var i = 0; i < _this.getLength(); i += 1) {
-      for (var j = 0; j < e.getLength(); j += 1) {
+    for (let i = 0; i < _this.getLength(); i += 1) {
+      for (let j = 0; j < e.getLength(); j += 1) {
         num[i + j] ^= QRMath.gexp(
           QRMath.glog(_this.getAt(i)) + QRMath.glog(e.getAt(j))
         )
@@ -952,9 +956,9 @@ function qrPolynomial (num, shift) {
       return _this
     }
 
-    var ratio = QRMath.glog(_this.getAt(0)) - QRMath.glog(e.getAt(0))
+    const ratio = QRMath.glog(_this.getAt(0)) - QRMath.glog(e.getAt(0))
 
-    var num = new Array(_this.getLength())
+    const num = new Array(_this.getLength())
     for (var i = 0; i < _this.getLength(); i += 1) {
       num[i] = _this.getAt(i)
     }
@@ -976,7 +980,7 @@ function qrPolynomial (num, shift) {
 
 var QRRSBlock = (function () {
   // [1: [L, M, Q, H], ..]
-  var RS_BLOCK_TABLE = [
+  const RS_BLOCK_TABLE = [
     [1, 26, 19],
     [1, 26, 16],
     [1, 26, 13],
@@ -1139,16 +1143,16 @@ var QRRSBlock = (function () {
     [20, 45, 15, 61, 46, 16]
   ]
 
-  var qrRSBlock = function (totalCount, dataCount) {
-    var _this: any = {}
+  const qrRSBlock = function (totalCount, dataCount) {
+    const _this: any = {}
     _this.totalCount = totalCount
     _this.dataCount = dataCount
     return _this
   }
 
-  var _this: any = {}
+  const _this: any = {}
 
-  var getRsBlockTable = function (typeNumber, errorCorrectLevel) {
+  const getRsBlockTable = function (typeNumber, errorCorrectLevel) {
     switch (errorCorrectLevel) {
       case QRErrorCorrectLevel.L:
         return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 0]
@@ -1164,7 +1168,7 @@ var QRRSBlock = (function () {
   }
 
   _this.getRSBlocks = function (typeNumber, errorCorrectLevel) {
-    var rsBlock = getRsBlockTable(typeNumber, errorCorrectLevel)
+    const rsBlock = getRsBlockTable(typeNumber, errorCorrectLevel)
 
     if (typeof rsBlock === 'undefined') {
       throw new Error(
@@ -1175,16 +1179,16 @@ var QRRSBlock = (function () {
       )
     }
 
-    var length = rsBlock.length / 3
+    const length = rsBlock.length / 3
 
-    var list: any[] = []
+    const list: any[] = []
 
-    for (var i = 0; i < length; i += 1) {
-      var count = rsBlock[i * 3 + 0]
-      var totalCount = rsBlock[i * 3 + 1]
-      var dataCount = rsBlock[i * 3 + 2]
+    for (let i = 0; i < length; i += 1) {
+      const count = rsBlock[i * 3 + 0]
+      const totalCount = rsBlock[i * 3 + 1]
+      const dataCount = rsBlock[i * 3 + 2]
 
-      for (var j = 0; j < count; j += 1) {
+      for (let j = 0; j < count; j += 1) {
         list.push(qrRSBlock(totalCount, dataCount))
       }
     }
@@ -1200,22 +1204,22 @@ var QRRSBlock = (function () {
 // ---------------------------------------------------------------------
 
 var qrBitBuffer = function () {
-  var _buffer: any[] = []
-  var _length = 0
+  const _buffer: any[] = []
+  let _length = 0
 
-  var _this: any = {}
+  const _this: any = {}
 
   _this.getBuffer = function () {
     return _buffer
   }
 
   _this.getAt = function (index) {
-    var bufIndex = Math.floor(index / 8)
+    const bufIndex = Math.floor(index / 8)
     return ((_buffer[bufIndex] >>> (7 - (index % 8))) & 1) == 1
   }
 
   _this.put = function (num, length) {
-    for (var i = 0; i < length; i += 1) {
+    for (let i = 0; i < length; i += 1) {
       _this.putBit(((num >>> (length - i - 1)) & 1) == 1)
     }
   }
@@ -1225,7 +1229,7 @@ var qrBitBuffer = function () {
   }
 
   _this.putBit = function (bit) {
-    var bufIndex = Math.floor(_length / 8)
+    const bufIndex = Math.floor(_length / 8)
     if (_buffer.length <= bufIndex) {
       _buffer.push(0)
     }
@@ -1245,16 +1249,16 @@ var qrBitBuffer = function () {
 // ---------------------------------------------------------------------
 
 var qr8BitByte = function (data) {
-  var _mode = QRMode.MODE_8BIT_BYTE
-  var _data = data
-  var _parsedData: any = []
+  const _mode = QRMode.MODE_8BIT_BYTE
+  const _data = data
+  let _parsedData: any = []
 
-  var _this: any = {}
+  const _this: any = {}
 
   // Added to support UTF-8 Characters
-  for (var i = 0, l = _data.length; i < l; i++) {
-    var byteArray: any[] = []
-    var code = _data.charCodeAt(i)
+  for (let i = 0, l = _data.length; i < l; i++) {
+    const byteArray: any[] = []
+    const code = _data.charCodeAt(i)
 
     if (code > 0x10000) {
       byteArray[0] = 0xf0 | ((code & 0x1c0000) >>> 18)
@@ -1284,7 +1288,7 @@ var qr8BitByte = function (data) {
     _parsedData.unshift(239)
   }
 
-  var _bytes = _parsedData
+  const _bytes = _parsedData
 
   _this.getMode = function () {
     return _mode
@@ -1295,7 +1299,7 @@ var qr8BitByte = function (data) {
   }
 
   _this.write = function (buffer) {
-    for (var i = 0; i < _bytes.length; i += 1) {
+    for (let i = 0; i < _bytes.length; i += 1) {
       buffer.put(_bytes[i], 8)
     }
   }
@@ -1311,10 +1315,10 @@ var qr8BitByte = function (data) {
 // byteArrayOutputStream
 // ---------------------------------------------------------------------
 
-var byteArrayOutputStream = function () {
-  var _bytes: any[] = []
+const byteArrayOutputStream = function () {
+  const _bytes: any[] = []
 
-  var _this: any = {}
+  const _this: any = {}
 
   _this.writeByte = function (b) {
     _bytes.push(b & 0xff)
@@ -1328,13 +1332,13 @@ var byteArrayOutputStream = function () {
   _this.writeBytes = function (b, off, len) {
     off = off || 0
     len = len || b.length
-    for (var i = 0; i < len; i += 1) {
+    for (let i = 0; i < len; i += 1) {
       _this.writeByte(b[i + off])
     }
   }
 
   _this.writeString = function (s) {
-    for (var i = 0; i < s.length; i += 1) {
+    for (let i = 0; i < s.length; i += 1) {
       _this.writeByte(s.charCodeAt(i))
     }
   }
@@ -1344,9 +1348,9 @@ var byteArrayOutputStream = function () {
   }
 
   _this.toString = function () {
-    var s = ''
+    let s = ''
     s += '['
-    for (var i = 0; i < _bytes.length; i += 1) {
+    for (let i = 0; i < _bytes.length; i += 1) {
       if (i > 0) {
         s += ','
       }
@@ -1363,15 +1367,15 @@ var byteArrayOutputStream = function () {
 // base64EncodeOutputStream
 // ---------------------------------------------------------------------
 
-var base64EncodeOutputStream = function () {
-  var _buffer = 0
-  var _buflen = 0
-  var _length = 0
-  var _base64 = ''
+const base64EncodeOutputStream = function () {
+  let _buffer = 0
+  let _buflen = 0
+  let _length = 0
+  let _base64 = ''
 
-  var _this: any = {}
+  const _this: any = {}
 
-  var writeEncoded = function (b) {
+  const writeEncoded = function (b) {
     _base64 += String.fromCharCode(encode(b & 0x3f))
   }
 
@@ -1412,8 +1416,8 @@ var base64EncodeOutputStream = function () {
 
     if (_length % 3 != 0) {
       // padding
-      var padlen = 3 - (_length % 3)
-      for (var i = 0; i < padlen; i += 1) {
+      const padlen = 3 - (_length % 3)
+      for (let i = 0; i < padlen; i += 1) {
         _base64 += '='
       }
     }
@@ -1431,12 +1435,12 @@ var base64EncodeOutputStream = function () {
 // ---------------------------------------------------------------------
 
 var base64DecodeInputStream = function (str) {
-  var _str = str
-  var _pos = 0
-  var _buffer = 0
-  var _buflen = 0
+  const _str = str
+  let _pos = 0
+  let _buffer = 0
+  let _buflen = 0
 
-  var _this: any = {}
+  const _this: any = {}
 
   _this.read = function () {
     while (_buflen < 8) {
@@ -1447,7 +1451,7 @@ var base64DecodeInputStream = function (str) {
         throw new Error('unexpected end of file./' + _buflen)
       }
 
-      var c = _str.charAt(_pos)
+      const c = _str.charAt(_pos)
       _pos += 1
 
       if (c == '=') {
@@ -1462,7 +1466,7 @@ var base64DecodeInputStream = function (str) {
       _buflen += 6
     }
 
-    var n = (_buffer >>> (_buflen - 8)) & 0xff
+    const n = (_buffer >>> (_buflen - 8)) & 0xff
     _buflen -= 8
     return n
   }
@@ -1490,18 +1494,18 @@ var base64DecodeInputStream = function (str) {
 // gifImage (B/W)
 // ---------------------------------------------------------------------
 
-var gifImage = function (width, height) {
-  var _width = width
-  var _height = height
-  var _data = new Array(width * height)
+const gifImage = function (width, height) {
+  const _width = width
+  const _height = height
+  const _data = new Array(width * height)
 
-  var _this: any = {}
+  const _this: any = {}
 
   _this.setPixel = function (x, y, pixel) {
     _data[y * _width + x] = pixel
   }
 
-  _this.write = function (out) {
+  _this.write = function (out, blackColor = '#000000', whiteColor = '#ffffff') {
     // ---------------------------------
     // GIF Signature
 
@@ -1520,15 +1524,19 @@ var gifImage = function (width, height) {
     // ---------------------------------
     // Global Color Map
 
+    const black = blackColor.split('')
+
     // black
-    out.writeByte(0x00)
-    out.writeByte(0x00)
-    out.writeByte(0x00)
+    out.writeByte(parseInt(`${black[1]}${black[2]}`, 16))
+    out.writeByte(parseInt(`${black[3]}${black[4]}`, 16))
+    out.writeByte(parseInt(`${black[5]}${black[6]}`, 16))
+
+    const white = whiteColor.split('')
 
     // white
-    out.writeByte(0xff)
-    out.writeByte(0xff)
-    out.writeByte(0xff)
+    out.writeByte(parseInt(`${white[1]}${white[2]}`, 16))
+    out.writeByte(parseInt(`${white[3]}${white[4]}`, 16))
+    out.writeByte(parseInt(`${white[5]}${white[6]}`, 16))
 
     // ---------------------------------
     // Image Descriptor
@@ -1546,12 +1554,12 @@ var gifImage = function (width, height) {
     // ---------------------------------
     // Raster Data
 
-    var lzwMinCodeSize = 2
-    var raster = getLZWRaster(lzwMinCodeSize)
+    const lzwMinCodeSize = 2
+    const raster = getLZWRaster(lzwMinCodeSize)
 
     out.writeByte(lzwMinCodeSize)
 
-    var offset = 0
+    let offset = 0
 
     while (raster.length - offset > 255) {
       out.writeByte(255)
@@ -1568,12 +1576,12 @@ var gifImage = function (width, height) {
     out.writeString(';')
   }
 
-  var bitOutputStream = function (out) {
-    var _out = out
-    var _bitLength = 0
-    var _bitBuffer = 0
+  const bitOutputStream = function (out) {
+    const _out = out
+    let _bitLength = 0
+    let _bitBuffer = 0
 
-    var _this: any = {}
+    const _this: any = {}
 
     _this.write = function (data, length) {
       if (data >>> length != 0) {
@@ -1602,32 +1610,32 @@ var gifImage = function (width, height) {
   }
 
   var getLZWRaster = function (lzwMinCodeSize) {
-    var clearCode = 1 << lzwMinCodeSize
-    var endCode = (1 << lzwMinCodeSize) + 1
-    var bitLength = lzwMinCodeSize + 1
+    const clearCode = 1 << lzwMinCodeSize
+    const endCode = (1 << lzwMinCodeSize) + 1
+    let bitLength = lzwMinCodeSize + 1
 
     // Setup LZWTable
-    var table = lzwTable()
+    const table = lzwTable()
 
-    for (var i = 0; i < clearCode; i += 1) {
+    for (let i = 0; i < clearCode; i += 1) {
       table.add(String.fromCharCode(i))
     }
     table.add(String.fromCharCode(clearCode))
     table.add(String.fromCharCode(endCode))
 
-    var byteOut = byteArrayOutputStream()
-    var bitOut = bitOutputStream(byteOut)
+    const byteOut = byteArrayOutputStream()
+    const bitOut = bitOutputStream(byteOut)
 
     // clear code
     bitOut.write(clearCode, bitLength)
 
-    var dataIndex = 0
+    let dataIndex = 0
 
-    var s = String.fromCharCode(_data[dataIndex])
+    let s = String.fromCharCode(_data[dataIndex])
     dataIndex += 1
 
     while (dataIndex < _data.length) {
-      var c = String.fromCharCode(_data[dataIndex])
+      const c = String.fromCharCode(_data[dataIndex])
       dataIndex += 1
 
       if (table.contains(s + c)) {
@@ -1658,10 +1666,10 @@ var gifImage = function (width, height) {
   }
 
   var lzwTable = function () {
-    var _map = {}
-    var _size = 0
+    const _map = {}
+    let _size = 0
 
-    var _this: any = {}
+    const _this: any = {}
 
     _this.add = function (key) {
       if (_this.contains(key)) {
@@ -1689,25 +1697,25 @@ var gifImage = function (width, height) {
   return _this
 }
 
-var createImgTag = function (width, height, getPixel) {
-  var gif = gifImage(width, height)
-  for (var y = 0; y < height; y += 1) {
-    for (var x = 0; x < width; x += 1) {
+var createImgTag = function (width, height, getPixel, black, white) {
+  const gif = gifImage(width, height)
+  for (let y = 0; y < height; y += 1) {
+    for (let x = 0; x < width; x += 1) {
       gif.setPixel(x, y, getPixel(x, y))
     }
   }
 
-  var b = byteArrayOutputStream()
-  gif.write(b)
+  const b = byteArrayOutputStream()
+  gif.write(b, black, white)
 
-  var base64 = base64EncodeOutputStream()
-  var bytes = b.toByteArray()
-  for (var i = 0; i < bytes.length; i += 1) {
+  const base64 = base64EncodeOutputStream()
+  const bytes = b.toByteArray()
+  for (let i = 0; i < bytes.length; i += 1) {
     base64.writeByte(bytes[i])
   }
   base64.flush()
 
-  var img = ''
+  let img = ''
   img += 'data:image/gif;base64,'
   img += base64
 
@@ -1718,16 +1726,24 @@ var createImgTag = function (width, height, getPixel) {
 // returns qrcode function.
 
 // eslint-disable-next-line import/prefer-default-export
-export const createQrCodeImg = function (text, options) {
-  options = options || {}
-  var typeNumber = options.typeNumber || 4
-  var errorCorrectLevel = options.errorCorrectLevel || 'M'
-  var size = options.size || 500
+export const createQrCodeImg = function (text: string, options: {
+  size?: number
+  typeNumber?: number
+  errorCorrectLevel?: 'L' | 'M' | 'Q' | 'H'
+  black: string
+  white: string
+}): string {
+  options = options ?? {}
+  const typeNumber = options.typeNumber ?? 4
+  const errorCorrectLevel = options.errorCorrectLevel ?? 'M'
+  const size = options.size ?? 500
+  const black = options.black ?? '#000000'
+  const white = options.white ?? '#FFFFFF'
 
-  var qr
+  let qr: ReturnType<typeof qrcode>
 
   try {
-    qr = qrcode(typeNumber, errorCorrectLevel || 'M')
+    qr = qrcode(typeNumber, errorCorrectLevel ?? 'M')
     qr.addData(text)
     qr.make()
   } catch (e) {
@@ -1737,14 +1753,17 @@ export const createQrCodeImg = function (text, options) {
       return createQrCodeImg(text, {
         size: size,
         errorCorrectLevel: errorCorrectLevel,
-        typeNumber: typeNumber + 1
+        typeNumber: typeNumber + 1,
+        black,
+        white,
       })
     }
   }
 
   // calc cellsize and margin
-  var cellsize = parseInt(`${size / qr.getModuleCount()}`)
-  var margin = parseInt(`${(size - qr.getModuleCount() * cellsize) / 2}`)
+  const cellsize = parseInt(`${size / qr.getModuleCount()}`)
+  const margin = parseInt(`${(size - qr.getModuleCount() * cellsize) / 2}`)
 
-  return qr.createImgTag(cellsize, margin, size)
+  return qr.createImgTag(cellsize, margin, size, black, white)
 }
+/* eslint-enable */

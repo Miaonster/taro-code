@@ -16,7 +16,7 @@ npm install taro-code
 
 ### Usage
 
-```jsx
+```tsx
 import Taro from '@tarojs/taro'
 import { Barcode, QRCode } from 'taro-code'
 
@@ -42,25 +42,26 @@ class Code extends Taro.Component {
 
 ### Barcode
 
-| Prop     | Type     | Default |
-| -------- | -------- | ------- |
-| `text`   | `string` | `''`    |
-| `width`  | `number` | `300`   |
-| `height` | `number` | `80`    |
-| `scale`  | `number` | `4`     |
-| `style`  | `object` | `{}`     |
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `text`      | `string` | `''`    |
+| `width`     | `number` | `300`   |
+| `height`    | `number` | `80`    |
+| `scale`     | `number` | `4`     |
+| `style`     | `object` | `{}`    |
+| `className` | `string` |         |
 
 ### QRCode
 
-| Prop                | Type     | Default |
-| ------------------- | -------- | ------- |
-| `text`              | `string` | `''`    |
-| `size`              | `number` | `300`   |
-| `scale`             | `number` | `4`     |
-| `typeNumber`        | `number` | `2`     |
-| `errorCorrectLevel` | `string` | `'M'`   |
-| `style`             | `object` | `{}`    |
-
+| Prop                | Type                       | Default |
+| ------------------- | -------------------------- | ------- |
+| `text`              | `string`                   | `''`    |
+| `size`              | `number`                   | `300`   |
+| `scale`             | `number`                   | `4`     |
+| `typeNumber`        | `number`                   | `2`     |
+| `errorCorrectLevel` | `'L' \| 'M' \| 'Q' \| 'H'` | `'M'`   |
+| `style`             | `object`                   | `{}`    |
+| `className`         | `string`                   |         |
 
 ## Screenshot
 

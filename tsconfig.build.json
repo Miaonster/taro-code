@@ -4,6 +4,7 @@
     "experimentalDecorators": true,
     "jsx": "react",
     "jsxFactory": "React.createElement",
+    "strict": true,
     "moduleResolution": "node",
     "noImplicitAny": false,
     "noUnusedLocals": true,
@@ -12,7 +13,10 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strictNullChecks": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "typeRoots": [
+      "node_modules/@types",
+    ],
   },
   "compileOnSave": false,
   "exclude": [
