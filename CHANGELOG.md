@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/Miaonster/taro-code/compare/v3.3.0...v3.4.0) (2021-11-17)
+
+
+### Features
+
+* fix className ([77654a1](https://github.com/Miaonster/taro-code/commit/77654a1c3dae1dd7ead687bbdb2fdbbe168c00ff))
+
+
+
+
+
 # [3.3.0](https://github.com/Miaonster/taro-code/compare/v3.2.0...v3.3.0) (2021-06-22)
 
 
