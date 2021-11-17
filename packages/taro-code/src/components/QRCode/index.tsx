@@ -55,6 +55,7 @@ const QRCode: React.FC<{
   foregroundColor?: string
   backgroundColor?: string
 }> = ({
+  className,
   text = '',
   size = 100,
   scale = 4,
@@ -85,7 +86,7 @@ const QRCode: React.FC<{
   const widthString = size != null ? `${size}px` : ''
   const heightString = size != null ? `${size}px` : ''
   const finalStyle = { width: widthString, height: heightString, ...style }
-  return <Image style={finalStyle} src={image} />
+  return <Image className={className} style={finalStyle} src={image} />
 }
 
 export default QRCode
