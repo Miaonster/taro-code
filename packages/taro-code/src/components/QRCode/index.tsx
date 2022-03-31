@@ -1,4 +1,4 @@
-import React, { CSSProperties, useMemo } from 'react'
+import React, { CSSProperties, useMemo, forwardRef, useImperativeHandle } from 'react'
 import { Image } from '@tarojs/components'
 import { createQrCodeImg } from '../../common/qrcode'
 
@@ -44,7 +44,9 @@ type TypeNumber =
   | 39
   | 40
 
-const QRCode: React.FC<{
+const QRCode = forwardRef<
+{ image: string },
+{
   className?: string
   text: string
   size?: number
@@ -54,39 +56,57 @@ const QRCode: React.FC<{
   typeNumber?: TypeNumber
   foregroundColor?: string
   backgroundColor?: string
-}> = ({
-  className,
-  text = '',
-  size = 100,
-  scale = 4,
-  typeNumber = 2,
-  errorCorrectLevel = 'M',
-  style = {},
-  foregroundColor = '#000000',
-  backgroundColor = '#FFFFFF'
-}) => {
-  const image = useMemo(() => {
-    const options = {
+  showMenuByLongpress?: boolean
+}
+>(
+  (
+    {
+      className,
+      text = '',
+      size = 100,
+      scale = 4,
+      typeNumber = 2,
+      errorCorrectLevel = 'M',
+      style = {},
+      foregroundColor = '#000000',
+      backgroundColor = '#FFFFFF',
+      showMenuByLongpress
+    },
+    ref
+  ) => {
+    const image = useMemo(() => {
+      const options = {
+        errorCorrectLevel,
+        typeNumber,
+        size: size * scale,
+        black: foregroundColor,
+        white: backgroundColor
+      }
+      return createQrCodeImg(text, options)
+    }, [
       errorCorrectLevel,
       typeNumber,
-      size: size * scale,
-      black: foregroundColor,
-      white: backgroundColor
-    }
-    return createQrCodeImg(text, options)
-  }, [
-    errorCorrectLevel,
-    typeNumber,
-    size,
-    scale,
-    foregroundColor,
-    backgroundColor,
-    text
-  ])
-  const widthString = size != null ? `${size}px` : ''
-  const heightString = size != null ? `${size}px` : ''
-  const finalStyle = { width: widthString, height: heightString, ...style }
-  return <Image className={className} style={finalStyle} src={image} />
-}
+      size,
+      scale,
+      foregroundColor,
+      backgroundColor,
+      text
+    ])
+    const widthString = size != null ? `${size}px` : ''
+    const heightString = size != null ? `${size}px` : ''
+    const finalStyle = { width: widthString, height: heightString, ...style }
+    useImperativeHandle(ref, () => {
+      return { image }
+    }, [image])
+    return (
+      <Image
+        className={className}
+        style={finalStyle}
+        src={image}
+        showMenuByLongpress={showMenuByLongpress}
+      />
+    )
+  }
+)
 
 export default QRCode
