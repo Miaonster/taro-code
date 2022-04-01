@@ -38,9 +38,10 @@ class Code extends Taro.Component {
 }
 ```
 
-## Props
+## Components
 
 ### Barcode
+
 
 | Prop              | Type     | Default   |
 | ----------------- | -------- | --------- |
@@ -66,6 +67,10 @@ class Code extends Taro.Component {
 | `className`         | `string`                   |           |
 | `foregroundColor`   | `string`                   | `#000000` |
 | `backgroundColor`   | `string`                   | `#FFFFFF` |
+
+### ImageProps
+
+除了上述的属性外，还支持 [ImageProps](https://taro-docs.jd.com/taro/docs/components/media/image/#imageprops) 的所有属性， 例如 `showMenuByLongpress` 等。
 
 ## Screenshot
 
