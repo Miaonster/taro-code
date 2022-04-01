@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/miaonster/taro-code/compare/v3.4.0...v3.5.0) (2022-04-01)
+
+
+### Features
+
+* pass through ImageProps ([6e3afc4](https://github.com/miaonster/taro-code/commit/6e3afc4d0aebf1c0c15fdf751131635649b143b4))
+* 支持长按识别二维码 fix [#56](https://github.com/miaonster/taro-code/issues/56) ([#57](https://github.com/miaonster/taro-code/issues/57)) ([3cc55d4](https://github.com/miaonster/taro-code/commit/3cc55d4e649f187adedf2a614f125fb92fa2b1bc))
+
+
+
+
+
 # [3.4.0](https://github.com/miaonster/taro-code/compare/v3.3.0...v3.4.0) (2021-11-17)
 
 

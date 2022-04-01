@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/Miaonster/taro-code/compare/v3.4.0...v3.5.0) (2022-04-01)
+
+
+### Features
+
+* pass through ImageProps ([6e3afc4](https://github.com/Miaonster/taro-code/commit/6e3afc4d0aebf1c0c15fdf751131635649b143b4))
+
+
+
+
+
 # [3.4.0](https://github.com/Miaonster/taro-code/compare/v3.3.0...v3.4.0) (2021-11-17)
 
 **Note:** Version bump only for package taro-code-demo
