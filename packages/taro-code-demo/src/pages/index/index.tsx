@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { View } from '@tarojs/components'
 import { Barcode, QRCode } from '../../../../taro-code/lib'
 import './index.css'
@@ -19,23 +19,30 @@ const Index: React.FC = () => {
     }
   }, [])
 
+  const barcodeRef = useRef(null)
+  const qrcodeRef = useRef(null)
+
   return (
     <View className='index'>
       <View className='barcode'>
         <Barcode
+          ref={barcodeRef}
           text={text}
           width={size}
           height={60}
           foregroundColor={foregroundColor}
           backgroundColor={backgroundColor}
+          showMenuByLongpress
         />
       </View>
       <View className='qrcode'>
         <QRCode
+          ref={qrcodeRef}
           text={text}
           size={size}
           foregroundColor={foregroundColor}
           backgroundColor={backgroundColor}
+          showMenuByLongpress
         />
       </View>
     </View>

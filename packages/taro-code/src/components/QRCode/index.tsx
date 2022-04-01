@@ -1,5 +1,11 @@
-import React, { CSSProperties, useMemo, forwardRef, useImperativeHandle } from 'react'
+import React, {
+  CSSProperties,
+  useMemo,
+  forwardRef,
+  useImperativeHandle,
+} from 'react'
 import { Image } from '@tarojs/components'
+import { ImageProps } from '@tarojs/components/types/Image'
 import { createQrCodeImg } from '../../common/qrcode'
 
 type TypeNumber =
@@ -45,19 +51,18 @@ type TypeNumber =
   | 40
 
 const QRCode = forwardRef<
-{ image: string },
-{
-  className?: string
-  text: string
-  size?: number
-  scale?: number
-  style?: CSSProperties
-  errorCorrectLevel?: 'L' | 'M' | 'Q' | 'H'
-  typeNumber?: TypeNumber
-  foregroundColor?: string
-  backgroundColor?: string
-  showMenuByLongpress?: boolean
-}
+  { image: string },
+  {
+    className?: string
+    text: string
+    size?: number
+    scale?: number
+    style?: CSSProperties
+    errorCorrectLevel?: 'L' | 'M' | 'Q' | 'H'
+    typeNumber?: TypeNumber
+    foregroundColor?: string
+    backgroundColor?: string
+  } & Omit<ImageProps, 'style' | 'src'>
 >(
   (
     {
@@ -70,9 +75,9 @@ const QRCode = forwardRef<
       style = {},
       foregroundColor = '#000000',
       backgroundColor = '#FFFFFF',
-      showMenuByLongpress
+      ...imageProps
     },
-    ref
+    ref,
   ) => {
     const image = useMemo(() => {
       const options = {
@@ -80,7 +85,7 @@ const QRCode = forwardRef<
         typeNumber,
         size: size * scale,
         black: foregroundColor,
-        white: backgroundColor
+        white: backgroundColor,
       }
       return createQrCodeImg(text, options)
     }, [
@@ -90,23 +95,27 @@ const QRCode = forwardRef<
       scale,
       foregroundColor,
       backgroundColor,
-      text
+      text,
     ])
     const widthString = size != null ? `${size}px` : ''
     const heightString = size != null ? `${size}px` : ''
     const finalStyle = { width: widthString, height: heightString, ...style }
-    useImperativeHandle(ref, () => {
-      return { image }
-    }, [image])
+    useImperativeHandle(
+      ref,
+      () => {
+        return { image }
+      },
+      [image],
+    )
     return (
       <Image
+        {...imageProps}
         className={className}
         style={finalStyle}
         src={image}
-        showMenuByLongpress={showMenuByLongpress}
       />
     )
-  }
+  },
 )
 
 export default QRCode

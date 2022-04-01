@@ -77,38 +77,36 @@ function getBuffer ({ pieces, width, extraBytes, scale = 1, whiteColor = '', bla
     .join('')
 }
 
-export default function barcode ({ text, scale = 4, blackColor, whiteColor }) {
-  if (text) {
-    const pieces = code128(text)
-    const width = pieces.length * scale
-    const height = 1
-    const extraBytes = width % 4
-    const colorSize = height * (3 * width + extraBytes)
-    const offset = 54
-    const fileSize = colorSize + offset
-    const fileSizeBytes = getLittleEndianHex(fileSize)
-    const numFileBytes = getLittleEndianHex(colorSize)
-    const w = getLittleEndianHex(width)
-    const h = getLittleEndianHex(height)
-    const imgdata = getBuffer({ pieces, width, extraBytes, scale, blackColor, whiteColor })
+export default function barcode ({ text = '', scale = 4, blackColor, whiteColor }) {
+  const pieces = code128(text)
+  const width = pieces.length * scale
+  const height = 1
+  const extraBytes = width % 4
+  const colorSize = height * (3 * width + extraBytes)
+  const offset = 54
+  const fileSize = colorSize + offset
+  const fileSizeBytes = getLittleEndianHex(fileSize)
+  const numFileBytes = getLittleEndianHex(colorSize)
+  const w = getLittleEndianHex(width)
+  const h = getLittleEndianHex(height)
+  const imgdata = getBuffer({ pieces, width, extraBytes, scale, blackColor, whiteColor })
 
-    const header =
-      'BM' + // Signature
-      fileSizeBytes + // size of the file (bytes)
-      '\x00\x00' + // reserved
-      '\x00\x00' + // reserved
-      '\x36\x00\x00\x00' + // offset of where BMP data lives (54 bytes)
-      '\x28\x00\x00\x00' + // number of remaining bytes in header from here (40 bytes)
-      w + // the width of the bitmap in pixels*
-      h + // the height of the bitmap in pixels*
-      '\x01\x00' + // the number of color planes (1)
-      '\x18\x00' + // 24 bits / pixel
-      '\x00\x00\x00\x00' + // No compression (0)
-      numFileBytes + // size of the BMP data (bytes)*
-      '\x13\x0B\x00\x00' + // 2835 pixels/meter - horizontal resolution
-      '\x13\x0B\x00\x00' + // 2835 pixels/meter - the vertical resolution
-      '\x00\x00\x00\x00' + // Number of colors in the palette (keep 0 for 32-bit)
-      '\x00\x00\x00\x00' // 0 important colors (means all colors are important)
-    return 'data:image/bmp;base64,' + btoa(header + imgdata)
-  }
+  const header =
+    'BM' + // Signature
+    fileSizeBytes + // size of the file (bytes)
+    '\x00\x00' + // reserved
+    '\x00\x00' + // reserved
+    '\x36\x00\x00\x00' + // offset of where BMP data lives (54 bytes)
+    '\x28\x00\x00\x00' + // number of remaining bytes in header from here (40 bytes)
+    w + // the width of the bitmap in pixels*
+    h + // the height of the bitmap in pixels*
+    '\x01\x00' + // the number of color planes (1)
+    '\x18\x00' + // 24 bits / pixel
+    '\x00\x00\x00\x00' + // No compression (0)
+    numFileBytes + // size of the BMP data (bytes)*
+    '\x13\x0B\x00\x00' + // 2835 pixels/meter - horizontal resolution
+    '\x13\x0B\x00\x00' + // 2835 pixels/meter - the vertical resolution
+    '\x00\x00\x00\x00' + // Number of colors in the palette (keep 0 for 32-bit)
+    '\x00\x00\x00\x00' // 0 important colors (means all colors are important)
+  return 'data:image/bmp;base64,' + btoa(header + imgdata)
 }

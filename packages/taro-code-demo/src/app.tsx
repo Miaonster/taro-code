@@ -1,7 +1,7 @@
 import React from 'react'
 
 class App extends React.Component {
-  render (): React.ReactNode {
+  render(): React.ReactNode {
     return this.props.children
   }
 }
