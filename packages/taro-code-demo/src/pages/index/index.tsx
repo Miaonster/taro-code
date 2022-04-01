@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { View } from '@tarojs/components'
-import { Barcode, QRCode } from '../../../../taro-code/lib'
+import { Barcode, QRCode } from '../../../../taro-code/dist'
 import './index.css'
 
 const Index: React.FC = () => {

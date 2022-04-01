@@ -5,7 +5,7 @@ import React, {
   useImperativeHandle,
 } from 'react'
 import { Image } from '@tarojs/components'
-import { ImageProps } from '@tarojs/components/types/Image'
+import { CommonImageProps } from '../../common/types/image'
 import { createQrCodeImg } from '../../common/qrcode'
 
 type TypeNumber =
@@ -50,20 +50,19 @@ type TypeNumber =
   | 39
   | 40
 
-const QRCode = forwardRef<
-  { image: string },
-  {
-    className?: string
-    text: string
-    size?: number
-    scale?: number
-    style?: CSSProperties
-    errorCorrectLevel?: 'L' | 'M' | 'Q' | 'H'
-    typeNumber?: TypeNumber
-    foregroundColor?: string
-    backgroundColor?: string
-  } & Omit<ImageProps, 'style' | 'src'>
->(
+export interface QRCodeProps extends CommonImageProps {
+  className?: string
+  text: string
+  size?: number
+  scale?: number
+  style?: CSSProperties
+  errorCorrectLevel?: 'L' | 'M' | 'Q' | 'H'
+  typeNumber?: TypeNumber
+  foregroundColor?: string
+  backgroundColor?: string
+}
+
+const QRCode = forwardRef<{ image: string }, QRCodeProps>(
   (
     {
       className,

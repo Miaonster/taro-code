@@ -4,22 +4,22 @@ import React, {
   useImperativeHandle,
   useMemo,
 } from 'react'
-import { Image, ImageProps } from '@tarojs/components'
+import { Image } from '@tarojs/components'
+import { CommonImageProps } from '../../common/types/image'
 import barcode from '../../common/barcode'
 
-const Barcode = forwardRef<
-  { image: string },
-  {
-    className?: string
-    text: string
-    scale?: number
-    width?: number
-    height?: number
-    style?: CSSProperties
-    foregroundColor?: string
-    backgroundColor?: string
-  } & Omit<ImageProps, 'style' | 'src'>
->(
+export interface BarcodeProps extends CommonImageProps {
+  className?: string
+  text: string
+  scale?: number
+  width?: number
+  height?: number
+  style?: CSSProperties
+  foregroundColor?: string
+  backgroundColor?: string
+}
+
+const Barcode = forwardRef<{ image: string }, BarcodeProps>(
   (
     {
       className,
