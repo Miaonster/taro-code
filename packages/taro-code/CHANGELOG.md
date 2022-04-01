@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.2](https://github.com/miaonster/taro-code/compare/v3.5.0...v3.5.2) (2022-04-01)
+
+
+### Bug Fixes
+
+* 修复类型问题 ([c194f3c](https://github.com/miaonster/taro-code/commit/c194f3c69ff749dc3276f986fdb25ec21d73fea8))
+
+
+
+
+
 # [3.5.0](https://github.com/miaonster/taro-code/compare/v3.4.0...v3.5.0) (2022-04-01)
 
 
