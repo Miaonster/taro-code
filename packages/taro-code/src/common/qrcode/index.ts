@@ -22,13 +22,22 @@
 //
 // ---------------------------------------------------------------------
 
+export interface QRCode {
+  addData: (data: string) => void
+  isDark: (row: number, col: number) => boolean
+  getModuleCount: () => number
+  make: () => void
+  createTableTag: (cellSize: number, margin: number) => string
+  createImgTag: (cellSize: number, margin: number, size: number, black: string, white: string) => string
+}
+
 /* eslint-disable */
 /**
  * qrcode
  * @param typeNumber 1 to 40
  * @param errorCorrectLevel 'L','M','Q','H'
  */
-const qrcode = function (typeNumber: number, errorCorrectLevel: 'L' | 'M' | 'Q' | 'H') {
+const qrcode = function (typeNumber: number, errorCorrectLevel: 'L' | 'M' | 'Q' | 'H'): QRCode {
   const PAD0 = 0xec
   const PAD1 = 0x11
 
@@ -316,10 +325,7 @@ const qrcode = function (typeNumber: number, errorCorrectLevel: 'L' | 'M' | 'Q' 
     for (var i = 0; i < dataList.length; i += 1) {
       const data = dataList[i]
       buffer.put(data.getMode(), 4)
-      buffer.put(
-        data.getLength(),
-        QRUtil.getLengthInBits(data.getMode(), typeNumber)
-      )
+      buffer.put(data.getLength(), QRUtil.getLengthInBits(data.getMode(), typeNumber))
       data.write(buffer)
     }
 
@@ -330,13 +336,7 @@ const qrcode = function (typeNumber: number, errorCorrectLevel: 'L' | 'M' | 'Q' 
     }
 
     if (buffer.getLengthInBits() > totalDataCount * 8) {
-      throw new Error(
-        'code length overflow. (' +
-          buffer.getLengthInBits() +
-          '>' +
-          totalDataCount * 8 +
-          ')'
-      )
+      throw new Error('code length overflow. (' + buffer.getLengthInBits() + '>' + totalDataCount * 8 + ')')
     }
 
     // end code
@@ -431,15 +431,21 @@ const qrcode = function (typeNumber: number, errorCorrectLevel: 'L' | 'M' | 'Q' 
     const min = margin
     const max = _this.getModuleCount() * cellSize + margin
 
-    return createImgTag(size, size, function (x, y) {
-      if (min <= x && x < max && min <= y && y < max) {
-        const c = Math.floor((x - min) / cellSize)
-        const r = Math.floor((y - min) / cellSize)
-        return _this.isDark(r, c) ? 0 : 1
-      } else {
-        return 1
-      }
-    }, black, white)
+    return createImgTag(
+      size,
+      size,
+      function (x, y) {
+        if (min <= x && x < max && min <= y && y < max) {
+          const c = Math.floor((x - min) / cellSize)
+          const r = Math.floor((y - min) / cellSize)
+          return _this.isDark(r, c) ? 0 : 1
+        } else {
+          return 1
+        }
+      },
+      black,
+      white,
+    )
   }
 
   return _this
@@ -534,7 +540,7 @@ const QRMode = {
   MODE_NUMBER: 1 << 0,
   MODE_ALPHA_NUM: 1 << 1,
   MODE_8BIT_BYTE: 1 << 2,
-  MODE_KANJI: 1 << 3
+  MODE_KANJI: 1 << 3,
 }
 
 // ---------------------------------------------------------------------
@@ -545,7 +551,7 @@ var QRErrorCorrectLevel = {
   L: 1,
   M: 0,
   Q: 3,
-  H: 2
+  H: 2,
 }
 
 // ---------------------------------------------------------------------
@@ -560,7 +566,7 @@ const QRMaskPattern = {
   PATTERN100: 4,
   PATTERN101: 5,
   PATTERN110: 6,
-  PATTERN111: 7
+  PATTERN111: 7,
 }
 
 // ---------------------------------------------------------------------
@@ -608,19 +614,10 @@ var QRUtil = (function () {
     [6, 28, 54, 80, 106, 132, 158],
     [6, 32, 58, 84, 110, 136, 162],
     [6, 26, 54, 82, 110, 138, 166],
-    [6, 30, 58, 86, 114, 142, 170]
+    [6, 30, 58, 86, 114, 142, 170],
   ]
-  const G15 =
-    (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0)
-  const G18 =
-    (1 << 12) |
-    (1 << 11) |
-    (1 << 10) |
-    (1 << 9) |
-    (1 << 8) |
-    (1 << 5) |
-    (1 << 2) |
-    (1 << 0)
+  const G15 = (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0)
+  const G18 = (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) | (1 << 2) | (1 << 0)
   const G15_MASK = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1)
 
   const _this: any = {}
@@ -874,8 +871,7 @@ var QRMath: any = (function () {
     EXP_TABLE[i] = 1 << i
   }
   for (var i = 8; i < 256; i += 1) {
-    EXP_TABLE[i] =
-      EXP_TABLE[i - 4] ^ EXP_TABLE[i - 5] ^ EXP_TABLE[i - 6] ^ EXP_TABLE[i - 8]
+    EXP_TABLE[i] = EXP_TABLE[i - 4] ^ EXP_TABLE[i - 5] ^ EXP_TABLE[i - 6] ^ EXP_TABLE[i - 8]
   }
   for (var i = 0; i < 255; i += 1) {
     LOG_TABLE[EXP_TABLE[i]] = i
@@ -910,7 +906,7 @@ var QRMath: any = (function () {
 // qrPolynomial
 // ---------------------------------------------------------------------
 
-function qrPolynomial (num, shift) {
+function qrPolynomial(num, shift) {
   if (typeof num.length === 'undefined') {
     throw new Error(num.length + '/' + shift)
   }
@@ -942,9 +938,7 @@ function qrPolynomial (num, shift) {
 
     for (let i = 0; i < _this.getLength(); i += 1) {
       for (let j = 0; j < e.getLength(); j += 1) {
-        num[i + j] ^= QRMath.gexp(
-          QRMath.glog(_this.getAt(i)) + QRMath.glog(e.getAt(j))
-        )
+        num[i + j] ^= QRMath.gexp(QRMath.glog(_this.getAt(i)) + QRMath.glog(e.getAt(j)))
       }
     }
 
@@ -1140,7 +1134,7 @@ var QRRSBlock = (function () {
     [19, 148, 118, 6, 149, 119],
     [18, 75, 47, 31, 76, 48],
     [34, 54, 24, 34, 55, 25],
-    [20, 45, 15, 61, 46, 16]
+    [20, 45, 15, 61, 46, 16],
   ]
 
   const qrRSBlock = function (totalCount, dataCount) {
@@ -1171,12 +1165,7 @@ var QRRSBlock = (function () {
     const rsBlock = getRsBlockTable(typeNumber, errorCorrectLevel)
 
     if (typeof rsBlock === 'undefined') {
-      throw new Error(
-        'bad rs block @ typeNumber:' +
-          typeNumber +
-          '/errorCorrectLevel:' +
-          errorCorrectLevel
-      )
+      throw new Error('bad rs block @ typeNumber:' + typeNumber + '/errorCorrectLevel:' + errorCorrectLevel)
     }
 
     const length = rsBlock.length / 3
@@ -1725,14 +1714,16 @@ var createImgTag = function (width, height, getPixel, black, white) {
 // ---------------------------------------------------------------------
 // returns qrcode function.
 
-// eslint-disable-next-line import/prefer-default-export
-export const createQrCodeImg = function (text: string, options: {
-  size?: number
-  typeNumber?: number
-  errorCorrectLevel?: 'L' | 'M' | 'Q' | 'H'
-  black: string
-  white: string
-}): string {
+export const createQrCodeImg = function (
+  text: string,
+  options: {
+    size?: number
+    typeNumber?: number
+    errorCorrectLevel?: 'L' | 'M' | 'Q' | 'H'
+    black: string
+    white: string
+  },
+): string {
   options = options ?? {}
   const typeNumber = options.typeNumber ?? 4
   const errorCorrectLevel = options.errorCorrectLevel ?? 'M'
@@ -1766,4 +1757,6 @@ export const createQrCodeImg = function (text: string, options: {
 
   return qr.createImgTag(cellsize, margin, size, black, white)
 }
+
+export { qrcode }
 /* eslint-enable */

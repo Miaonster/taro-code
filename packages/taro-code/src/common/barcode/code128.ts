@@ -11,7 +11,7 @@ const SET_CODEB = 100
 const SET_STOP = 106
 
 const REPLACE_CODES = {
-  CHAR_TILDE: CODE_FNC1 // ~ corresponds to FNC1 in GS1-128 standard
+  CHAR_TILDE: CODE_FNC1, // ~ corresponds to FNC1 in GS1-128 standard
 }
 
 const CODESET = {
@@ -19,7 +19,7 @@ const CODESET = {
   AB: 2,
   A: 3,
   B: 4,
-  C: 5
+  C: 5,
 }
 
 const PATTERNS = [
@@ -129,10 +129,10 @@ const PATTERNS = [
   [2, 1, 1, 4, 1, 2, 0, 0], // 103
   [2, 1, 1, 2, 1, 4, 0, 0], // 104
   [2, 1, 1, 2, 3, 2, 0, 0], // 105
-  [2, 3, 3, 1, 1, 1, 2, 0] // 106
+  [2, 3, 3, 1, 1, 1, 2, 0], // 106
 ]
 
-function getBytes (str) {
+function getBytes(str) {
   const bytes: any[] = []
   for (let i = 0; i < str.length; i++) {
     bytes.push(str.charCodeAt(i))
@@ -140,7 +140,7 @@ function getBytes (str) {
   return bytes
 }
 
-export default function code128 (text) {
+export default function code128(text): (0 | 1)[] {
   const codes = stringToCode128(text)
   let buffer: any[] = []
 
@@ -157,9 +157,9 @@ export default function code128 (text) {
   return buffer
 }
 
-function stringToCode128 (text) {
+function stringToCode128(text) {
   const barc = {
-    currcs: CODESET.C
+    currcs: CODESET.C,
   }
 
   const bytes = getBytes(text)
@@ -216,7 +216,7 @@ function stringToCode128 (text) {
   // encoding should now be complete
   return codes
 
-  function getBestStartSet (csa1, csa2) {
+  function getBestStartSet(csa1, csa2) {
     // tries to figure out the best codeset
     // to start with to get the most compact code
     let vote = 0
@@ -228,7 +228,7 @@ function stringToCode128 (text) {
     return vote > 0 ? CODESET.A : CODESET.B
   }
 
-  function perhapsCodeC (bytes, codeset) {
+  function perhapsCodeC(bytes, codeset) {
     for (let i = 0; i < bytes.length; i++) {
       const b = bytes[i]
       if ((b < 48 || b > 57) && b != CHAR_TILDE) return codeset
@@ -238,7 +238,7 @@ function stringToCode128 (text) {
 
   // chr1 is current byte
   // chr2 is the next byte to process. looks ahead.
-  function codesForChar (chr1, chr2, currcs) {
+  function codesForChar(chr1, chr2, currcs) {
     const result: any[] = []
     let shifter = -1
 
@@ -297,7 +297,7 @@ function stringToCode128 (text) {
 }
 
 // reduce the ascii code to fit into the Code128 char table
-function codeValue (chr1, chr2: undefined | number = undefined) {
+function codeValue(chr1, chr2: undefined | number = undefined) {
   if (typeof chr2 === 'undefined') {
     return chr1 >= 32 ? chr1 - 32 : chr1 + 64
   } else {
@@ -305,7 +305,7 @@ function codeValue (chr1, chr2: undefined | number = undefined) {
   }
 }
 
-function charCompatible (chr, codeset) {
+function charCompatible(chr, codeset) {
   const csa = codeSetAllowedFor(chr)
   if (csa == CODESET.ANY) return true
   // if we need to change from current
@@ -315,7 +315,7 @@ function charCompatible (chr, codeset) {
   return false
 }
 
-function codeSetAllowedFor (chr) {
+function codeSetAllowedFor(chr) {
   if (chr >= 48 && chr <= 57) {
     // 0-9
     return CODESET.ANY

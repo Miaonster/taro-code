@@ -9,3 +9,5 @@ lib/
 *.tgz
 coverage
 lerna-debug.log
+
+.swc

@@ -4,7 +4,11 @@
   justify-content: center;
   align-items: center;
 }
-.barcode {
-  padding-top: 30px;
-  padding-bottom: 50px;
+
+.caption {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #333;
+  text-align: center;
+  margin: 20px 0 10px;
 }

@@ -1,7 +1,7 @@
 /* eslint-disable */
 import code128 from './code128'
 
-function getLittleEndianHex (value) {
+function getLittleEndianHex(value) {
   var result: string[] = []
   for (var bytes = 4; bytes > 0; bytes--) {
     result.push(String.fromCharCode(value & 255))
@@ -10,7 +10,7 @@ function getLittleEndianHex (value) {
   return result.join('')
 }
 
-function btoa (string) {
+function btoa(string) {
   var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
 
   string = String(string)
@@ -30,7 +30,7 @@ function btoa (string) {
       (c = string.charCodeAt(i++)) > 255
     ) {
       throw new TypeError(
-        "Failed to execute 'btoa' on 'Window': The string to be encoded contains characters outside of the Latin1 range."
+        "Failed to execute 'btoa' on 'Window': The string to be encoded contains characters outside of the Latin1 range.",
       )
     }
 
@@ -46,7 +46,7 @@ function btoa (string) {
   return rest ? result.slice(0, rest - 3) + '==='.substring(rest) : result
 }
 
-function getBuffer ({ pieces, width, extraBytes, scale = 1, whiteColor = '', blackColor = '' }) {
+function getBuffer({ pieces, width, extraBytes, scale = 1, whiteColor = '', blackColor = '' }) {
   const black = blackColor.split('')
   const white = whiteColor.split('')
   const blackColors = [
@@ -77,8 +77,9 @@ function getBuffer ({ pieces, width, extraBytes, scale = 1, whiteColor = '', bla
     .join('')
 }
 
-export default function barcode ({ text = '', scale = 4, blackColor, whiteColor }) {
+export default function barcode({ text = '', scale = 4, blackColor, whiteColor }) {
   const pieces = code128(text)
+  console.log('pieces', pieces)
   const width = pieces.length * scale
   const height = 1
   const extraBytes = width % 4
@@ -90,6 +91,7 @@ export default function barcode ({ text = '', scale = 4, blackColor, whiteColor 
   const w = getLittleEndianHex(width)
   const h = getLittleEndianHex(height)
   const imgdata = getBuffer({ pieces, width, extraBytes, scale, blackColor, whiteColor })
+  console.log('imgdata', btoa(imgdata))
 
   const header =
     'BM' + // Signature

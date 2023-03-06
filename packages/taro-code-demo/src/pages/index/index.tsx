@@ -1,10 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { View } from '@tarojs/components'
-import { Barcode, QRCode } from '../../../../taro-code/dist'
+// import Barcode from 'taro-code/lib/components/Barcode'
+// import QRCode from 'taro-code/lib/components/QRCode'
+// import QRCodeCanvas from 'taro-code/lib/components/QRCodeCanvas'
+import { Barcode, QRCode, QRCodeCanvas, BarcodeCanvas } from 'taro-code'
 import './index.css'
 
 const Index: React.FC = () => {
-  const [text, setText] = useState('hello')
+  const [text, setText] = useState('1')
   const [size, setSize] = useState(300)
   const [foregroundColor] = useState('#F00000')
   const [backgroundColor] = useState('#FFFFFF')
@@ -25,6 +28,18 @@ const Index: React.FC = () => {
   return (
     <View className='index'>
       <View className='barcode'>
+        <View className='caption'>Barcode Canvas</View>
+        <BarcodeCanvas
+          ref={barcodeRef}
+          text={text}
+          width={size}
+          height={60}
+          foregroundColor={foregroundColor}
+          backgroundColor={backgroundColor}
+        />
+      </View>
+      <View className='barcode'>
+        <View className='caption'>Barcode Image</View>
         <Barcode
           ref={barcodeRef}
           text={text}
@@ -36,6 +51,18 @@ const Index: React.FC = () => {
         />
       </View>
       <View className='qrcode'>
+        <View className='caption'>QRCode Canvas</View>
+        <QRCodeCanvas
+          ref={qrcodeRef}
+          text={text}
+          size={size}
+          foregroundColor={foregroundColor}
+          backgroundColor={backgroundColor}
+          padding={10}
+        />
+      </View>
+      <View className='qrcode'>
+        <View className='caption'>QRCode Image</View>
         <QRCode
           ref={qrcodeRef}
           text={text}

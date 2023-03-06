@@ -1,8 +1,8 @@
 {
   "private": true,
   "name": "taro-code-demo",
-  "version": "3.5.2",
-  "description": "Taro.js barcode & qrcode",
+  "version": "4.0.0-beta.0",
+  "description": "Taro.js barcode & qrcode, Image & Canvas",
   "homepage": "https://github.com/miaonster/taro-code",
   "license": "MIT",
   "author": "miaonster <miaonster17@gmail.com>",
@@ -39,25 +39,30 @@
   ],
   "dependencies": {
     "@babel/runtime": "^7.7.7",
-    "@tarojs/components": "3.4.4",
-    "@tarojs/react": "3.4.4",
-    "@tarojs/runtime": "3.4.4",
-    "@tarojs/taro": "3.4.4",
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0",
-    "react-test-renderer": "^16.13.1",
-    "taro-code": "file:../taro-code"
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
+    "@tarojs/components": "3.6.2",
+    "@tarojs/plugin-framework-react": "^3.6.2",
+    "@tarojs/plugin-platform-h5": "^3.6.2",
+    "@tarojs/react": "3.6.2",
+    "@tarojs/runtime": "3.6.2",
+    "@tarojs/taro": "3.6.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-test-renderer": "^17.0.2",
+    "taro-code": "workspace:*"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
-    "@tarojs/cli": "3.4.4",
-    "@tarojs/mini-runner": "3.4.4",
-    "@tarojs/webpack-runner": "3.4.4",
+    "@tarojs/cli": "3.6.2",
+    "@tarojs/mini-runner": "3.6.2",
+    "@tarojs/webpack-runner": "3.6.2",
     "@types/jest": "^26.0.23",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
     "babel-plugin-istanbul": "^6.0.0",
-    "babel-preset-taro": "3.4.4",
+    "babel-preset-taro": "3.6.2",
     "nervjs": "^1.5.7",
     "rimraf": "^3.0.2",
-    "typescript": "4.3.2"
+    "typescript": "4.9.5"
   }
 }

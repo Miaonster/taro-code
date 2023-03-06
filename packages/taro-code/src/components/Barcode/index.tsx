@@ -1,9 +1,4 @@
-import React, {
-  CSSProperties,
-  forwardRef,
-  useImperativeHandle,
-  useMemo,
-} from 'react'
+import React, { CSSProperties, forwardRef, useImperativeHandle, useMemo } from 'react'
 import { Image } from '@tarojs/components'
 import { CommonImageProps } from '../../common/types/image'
 import barcode from '../../common/barcode'

@@ -11,6 +11,9 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
+  "rules": {
+    "no-void": "off"
+  },
   "env": {
     "jest/globals": true
   },
@@ -21,7 +24,6 @@
         "packages/**/*.test.js"
       ],
       "rules": {
-        "taro/no-stateless-component": "off",
         "react/react-in-jsx-scope": "off",
         "react/no-find-dom-node": "off",
         "no-unused-vars": [
