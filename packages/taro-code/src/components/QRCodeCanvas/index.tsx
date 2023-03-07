@@ -57,6 +57,7 @@ export interface QRCodeCanvasProps {
   foregroundColor?: string
   backgroundColor?: string
   padding?: number
+  rootSelector?: string
 }
 
 function usePrevious<T>(state: T): T | undefined {
@@ -80,6 +81,7 @@ const QRCodeCanvas = forwardRef<{ canvas?: Taro.Canvas }, QRCodeCanvasProps>((pr
     foregroundColor = '#000000',
     backgroundColor = '#FFF0FF',
     padding = 0,
+    rootSelector,
   } = props
   const id = 'taro-code-canvas-qrcode'
   const widthString = size != null ? `${size}px` : ''
@@ -89,7 +91,7 @@ const QRCodeCanvas = forwardRef<{ canvas?: Taro.Canvas }, QRCodeCanvasProps>((pr
   const [canvasOutput, setCanvasOutput] = useState<Taro.Canvas>()
 
   const drawOnce = async (): Promise<void> => {
-    const canvas = await waitForElement(id)
+    const canvas = await waitForElement(id, rootSelector)
     setCanvasOutput(canvas)
     if (canvas != null) {
       const ctx = canvas.getContext('2d') as unknown as CanvasContext

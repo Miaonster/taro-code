@@ -13,6 +13,7 @@ export interface BarcodeProps {
   style?: CSSProperties
   foregroundColor?: string
   backgroundColor?: string
+  rootSelector?: string
 }
 
 const BarcodeCanvas = forwardRef<{ canvas?: Taro.Canvas }, BarcodeProps>((props, ref) => {
@@ -24,6 +25,7 @@ const BarcodeCanvas = forwardRef<{ canvas?: Taro.Canvas }, BarcodeProps>((props,
     style = {},
     foregroundColor = '#000000',
     backgroundColor = '#FFFFFF',
+    rootSelector,
   } = props
   const id = 'taro-code-canvas-barcode'
   const widthString = width != null ? `${width}px` : ''
@@ -32,7 +34,7 @@ const BarcodeCanvas = forwardRef<{ canvas?: Taro.Canvas }, BarcodeProps>((props,
   const [canvasOutput, setCanvasOutput] = useState<Taro.Canvas>()
 
   const drawOnce = async (): Promise<void> => {
-    const canvas = await waitForElement(id)
+    const canvas = await waitForElement(id, rootSelector)
     setCanvasOutput(canvas)
     if (canvas != null) {
       drawCanvasBarcode(text, {
