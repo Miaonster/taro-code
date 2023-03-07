@@ -1,27 +1,9 @@
 {
   "name": "taro-code",
-  "version": "4.0.0-beta.0",
-  "description": "Taro.js barcode & qrcode",
+  "version": "4.0.0-beta.2",
+  "description": "Taro.js barcode & qrcode, Image & Canvas",
   "main": "lib/index.js",
   "source": "src/index.ts",
-  "exports": {
-    ".": "./lib/index.js",
-    "./Barcode": {
-      "default": "./lib/components/Barcode/index.js",
-      "import": "./lib/components/Barcode/index.js",
-      "types": "./lib/components/Barcode/index.d.ts"
-    },
-    "./QRCode": {
-      "default": "./lib/components/QRCode/index.js",
-      "import": "./lib/components/QRCode/index.js",
-      "types": "./lib/components/QRCode/index.d.ts"
-    },
-    "./QRCodeCanvas": {
-      "default": "./lib/components/QRCodeCanvas/index.js",
-      "import": "./lib/components/QRCodeCanvas/index.js",
-      "types": "./lib/components/QRCodeCanvas/index.d.ts"
-    }
-  },
   "scripts": {
     "dev": "tsc --project ./tsconfig.build.json --watch --declaration --incremental",
     "build": "tsc --project ./tsconfig.build.json --declaration",
@@ -65,6 +47,7 @@
     "@tarojs/cli": "3.6.2",
     "@tarojs/components": "3.6.2",
     "@tarojs/mini-runner": "3.6.2",
+    "@tarojs/plugin-platform-weapp": "^3.6.2",
     "@tarojs/react": "3.6.2",
     "@tarojs/runtime": "3.6.2",
     "@tarojs/taro": "3.6.2",

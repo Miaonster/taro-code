@@ -1,7 +1,7 @@
 import Taro from '@tarojs/taro'
 
 const getElement = async (id: string): Promise<Taro.Canvas | undefined> => {
-  if (typeof document !== 'undefined') {
+  if (Taro.getEnv() === Taro.ENV_TYPE.WEB) {
     const canvasWrap = document.getElementById(id) as HTMLDivElement
     const canvas = canvasWrap.children[0] as unknown as Taro.Canvas | undefined
     return await Promise.resolve(canvas)

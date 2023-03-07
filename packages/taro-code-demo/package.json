@@ -43,6 +43,7 @@
     "@tarojs/components": "3.6.2",
     "@tarojs/plugin-framework-react": "^3.6.2",
     "@tarojs/plugin-platform-h5": "^3.6.2",
+    "@tarojs/plugin-platform-weapp": "^3.6.2",
     "@tarojs/react": "3.6.2",
     "@tarojs/runtime": "3.6.2",
     "@tarojs/taro": "3.6.2",
@@ -63,6 +64,6 @@
     "babel-preset-taro": "3.6.2",
     "nervjs": "^1.5.7",
     "rimraf": "^3.0.2",
-    "typescript": "4.9.5"
+    "typescript": "4.3.2"
   }
 }

@@ -79,7 +79,6 @@ function getBuffer({ pieces, width, extraBytes, scale = 1, whiteColor = '', blac
 
 export default function barcode({ text = '', scale = 4, blackColor, whiteColor }) {
   const pieces = code128(text)
-  console.log('pieces', pieces)
   const width = pieces.length * scale
   const height = 1
   const extraBytes = width % 4
@@ -91,7 +90,6 @@ export default function barcode({ text = '', scale = 4, blackColor, whiteColor }
   const w = getLittleEndianHex(width)
   const h = getLittleEndianHex(height)
   const imgdata = getBuffer({ pieces, width, extraBytes, scale, blackColor, whiteColor })
-  console.log('imgdata', btoa(imgdata))
 
   const header =
     'BM' + // Signature

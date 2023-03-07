@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { View } from '@tarojs/components'
+import { View, Canvas } from '@tarojs/components'
 // import Barcode from 'taro-code/lib/components/Barcode'
 // import QRCode from 'taro-code/lib/components/QRCode'
 // import QRCodeCanvas from 'taro-code/lib/components/QRCodeCanvas'
@@ -27,6 +27,7 @@ const Index: React.FC = () => {
 
   return (
     <View className='index'>
+      <Canvas type='2d' style={{ width: 0, height: 0 }} />
       <View className='barcode'>
         <View className='caption'>Barcode Canvas</View>
         <BarcodeCanvas
