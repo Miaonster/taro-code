@@ -1,6 +1,6 @@
 {
   "name": "taro-code",
-  "version": "4.0.0-beta.3",
+  "version": "4.0.0",
   "description": "Taro.js barcode & qrcode, Image & Canvas",
   "main": "lib/index.js",
   "source": "src/index.ts",
