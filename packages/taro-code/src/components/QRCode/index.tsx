@@ -1,9 +1,4 @@
-import React, {
-  CSSProperties,
-  useMemo,
-  forwardRef,
-  useImperativeHandle,
-} from 'react'
+import React, { CSSProperties, useMemo, forwardRef, useImperativeHandle } from 'react'
 import { Image } from '@tarojs/components'
 import { CommonImageProps } from '../../common/types/image'
 import { createQrCodeImg } from '../../common/qrcode'
@@ -87,15 +82,7 @@ const QRCode = forwardRef<{ image: string }, QRCodeProps>(
         white: backgroundColor,
       }
       return createQrCodeImg(text, options)
-    }, [
-      errorCorrectLevel,
-      typeNumber,
-      size,
-      scale,
-      foregroundColor,
-      backgroundColor,
-      text,
-    ])
+    }, [errorCorrectLevel, typeNumber, size, scale, foregroundColor, backgroundColor, text])
     const widthString = size != null ? `${size}px` : ''
     const heightString = size != null ? `${size}px` : ''
     const finalStyle = { width: widthString, height: heightString, ...style }
@@ -106,14 +93,7 @@ const QRCode = forwardRef<{ image: string }, QRCodeProps>(
       },
       [image],
     )
-    return (
-      <Image
-        {...imageProps}
-        className={className}
-        style={finalStyle}
-        src={image}
-      />
-    )
+    return <Image {...imageProps} className={className} style={finalStyle} src={image} />
   },
 )
 

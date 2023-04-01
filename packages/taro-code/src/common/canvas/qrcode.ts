@@ -1,6 +1,46 @@
 import Taro, { Canvas, CanvasContext } from '@tarojs/taro'
 
-import { qrcode } from '../qrcode'
+import { QRCode, qrcode } from '../qrcode'
+
+function autoIncreaseTypeNumber(
+  text: string,
+  options: {
+    size?: number
+    typeNumber?: number
+    errorCorrectLevel?: 'L' | 'M' | 'Q' | 'H'
+    black: string
+    white: string
+  },
+): QRCode {
+  options = options ?? {}
+  const typeNumber = options.typeNumber ?? 4
+  const errorCorrectLevel = options.errorCorrectLevel ?? 'M'
+  const size = options.size ?? 500
+  const black = options.black ?? '#000000'
+  const white = options.white ?? '#FFFFFF'
+
+  let qr: ReturnType<typeof qrcode>
+
+  try {
+    qr = qrcode(typeNumber, errorCorrectLevel ?? 'M')
+    qr.addData(text)
+    qr.make()
+  } catch (e) {
+    if (typeNumber >= 40) {
+      throw new Error('Text too long to encode')
+    } else {
+      return autoIncreaseTypeNumber(text, {
+        size: size,
+        errorCorrectLevel: errorCorrectLevel,
+        typeNumber: typeNumber + 1,
+        black,
+        white,
+      })
+    }
+  }
+
+  return qr
+}
 
 export function drawCanvasQRCode(
   text: string,
@@ -18,9 +58,13 @@ export function drawCanvasQRCode(
   const errorCorrectLevel = options.errorCorrectLevel ?? 'M'
   const size = options.size ?? 500
 
-  const qr = qrcode(typeNumber, errorCorrectLevel ?? 'M')
-  qr.addData(text)
-  qr.make()
+  const qr = autoIncreaseTypeNumber(text, {
+    typeNumber,
+    errorCorrectLevel,
+    size,
+    black: options.foregroundColor,
+    white: options.backgroundColor,
+  })
 
   const canvas = options.canvas
   const dpr = Taro.getSystemInfoSync().pixelRatio
