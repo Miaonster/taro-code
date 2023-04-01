@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.1
+
+### Patch Changes
+
+- 7646d04: drawCanvasQRCode auto increase typeNumber
+
 ## 4.0.0
 
 ### Patch Changes
