@@ -12,7 +12,7 @@
     "build:component": "pnpm --filter taro-code run build",
     "clean": "pnpm -r run clean",
     "clean:component": "pnpm --filter taro-code run clean",
-    "publish": "changeset publish --registry=https://registry.npmjs.org",
+    "publish": "pnpm publish -r --registry=https://registry.npmjs.org",
     "update-version": "changeset version",
     "test": "pnpm -r run test"
   },
