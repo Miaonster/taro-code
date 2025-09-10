@@ -16,7 +16,7 @@ npm install taro-code
 
 ### Usage
 
-````tsx
+```tsx
 import Taro from '@tarojs/taro'
 import { Barcode, QRCode } from 'taro-code'
 
@@ -25,13 +25,7 @@ class Code extends Taro.Component {
     return (
       <View>
         <Barcode text='hello' width={300} height={60} scale={4} />
-        <QRCode
-          text='world'
-          size={300}
-          scale={4}
-          errorCorrectLevel='M'
-          typeNumber={2}
-        />
+        <QRCode text='world' size={300} scale={4} errorCorrectLevel='M' typeNumber={2} />
       </View>
     )
   }
@@ -88,7 +82,7 @@ createQrCodeImg(text: string, options?: {
   white?: string
   padding?: number
 }): string
-````
+```
 
 | 参数                        | 类型                       | 默认值      | 描述       |
 | --------------------------- | -------------------------- | ----------- | ---------- |
