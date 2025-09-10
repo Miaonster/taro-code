@@ -72,20 +72,22 @@ export function drawCanvasQRCode(
   canvas.height = size * dpr
   const width = canvas.width
 
+  const padding = options.padding ? options.padding * dpr : 0
+
   const ctx = canvas.getContext('2d') as CanvasContext
 
   ctx.fillStyle = options.backgroundColor
-  ctx.fillRect(0, 0, width + options.padding * 2, width + options.padding * 2)
+  ctx.fillRect(0, 0, width + padding * 2, width + padding * 2)
 
-  const tileW = (width - options.padding * 2) / qr.getModuleCount()
-  const tileH = (width - options.padding * 2) / qr.getModuleCount()
+  const tileW = (width - padding * 2) / qr.getModuleCount()
+  const tileH = (width - padding * 2) / qr.getModuleCount()
 
   for (let row = 0; row < qr.getModuleCount(); row++) {
     for (let col = 0; col < qr.getModuleCount(); col++) {
       ctx.fillStyle = qr.isDark(row, col) ? options.foregroundColor : options.backgroundColor
       const w = Math.ceil((col + 1) * tileW) - Math.floor(col * tileW)
       const h = Math.ceil((row + 1) * tileW) - Math.floor(row * tileW)
-      ctx.fillRect(Math.round(col * tileW) + options.padding, Math.round(row * tileH) + options.padding, w, h)
+      ctx.fillRect(Math.round(col * tileW) + padding, Math.round(row * tileH) + padding, w, h)
     }
   }
 }

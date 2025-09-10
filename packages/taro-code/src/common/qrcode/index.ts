@@ -1722,6 +1722,7 @@ export const createQrCodeImg = function (
     errorCorrectLevel?: 'L' | 'M' | 'Q' | 'H'
     black: string
     white: string
+    padding?: number
   },
 ): string {
   options = options ?? {}
@@ -1730,6 +1731,7 @@ export const createQrCodeImg = function (
   const size = options.size ?? 500
   const black = options.black ?? '#000000'
   const white = options.white ?? '#FFFFFF'
+  const padding = options.padding ?? 4
 
   let qr: ReturnType<typeof qrcode>
 
@@ -1751,11 +1753,15 @@ export const createQrCodeImg = function (
     }
   }
 
-  // calc cellsize and margin
-  const cellsize = parseInt(`${size / qr.getModuleCount()}`)
-  const margin = parseInt(`${(size - qr.getModuleCount() * cellsize) / 2}`)
+  const remainSize = padding !== undefined ? size - padding * 2 : size
+  // calc cellSize and margin
+  const cellSize = parseInt(`${remainSize / qr.getModuleCount()}`)
+  const contentSize = cellSize * qr.getModuleCount()
+  // const margin = parseInt(`${(size - qr.getModuleCount() * cellSize) / 2}`)
+  const margin = padding !== undefined ? padding : parseInt(`${(remainSize - contentSize) / 2}`)
+  const realSize = contentSize + margin * 2
 
-  return qr.createImgTag(cellsize, margin, size, black, white)
+  return qr.createImgTag(cellSize, margin, realSize, black, white)
 }
 
 export { qrcode }

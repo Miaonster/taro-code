@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QRCodeCanvas test renders correctly with 40+ words 1`] = `
+<canvas
+  canvasId="taro-code-canvas-qrcode"
+  id="taro-code-canvas-qrcode"
+  style={
+    {
+      "height": "100px",
+      "width": "100px",
+    }
+  }
+  type="2d"
+/>
+`;
+
+exports[`QRCodeCanvas test renders correctly with hello world 1`] = `
+<canvas
+  canvasId="taro-code-canvas-qrcode"
+  id="taro-code-canvas-qrcode"
+  style={
+    {
+      "height": "100px",
+      "width": "100px",
+    }
+  }
+  type="2d"
+/>
+`;
