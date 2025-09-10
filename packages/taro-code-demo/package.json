@@ -1,5 +1,5 @@
 {
-  "name": "taro-code-demo-2",
+  "name": "taro-code-demo",
   "version": "1.0.0",
   "private": true,
   "description": "",
@@ -50,6 +50,7 @@
     "@tarojs/plugin-platform-tt": "4.1.4",
     "@tarojs/plugin-platform-weapp": "4.1.4",
     "@tarojs/react": "4.1.4",
+    "@tarojs/router": "^4.1.6",
     "@tarojs/runtime": "4.1.4",
     "@tarojs/shared": "4.1.4",
     "@tarojs/taro": "4.1.4",

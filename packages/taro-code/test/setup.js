@@ -1,4 +1,17 @@
-import { configure } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
+// Jest setup file for react-test-renderer
+// Mock Taro components for testing
 
-configure({ adapter: new Adapter() })
+// Mock @tarojs/components
+jest.mock('@tarojs/components', () => ({
+  Image: 'img',
+  Canvas: 'canvas',
+}))
+
+// Mock @tarojs/taro
+jest.mock('@tarojs/taro', () => ({
+  createCanvasContext: jest.fn(() => ({
+    drawImage: jest.fn(),
+    draw: jest.fn(),
+  })),
+  canvasToTempFilePath: jest.fn(),
+}))

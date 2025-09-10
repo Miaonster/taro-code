@@ -8,7 +8,6 @@ lib/
 .vscode/
 *.tgz
 coverage
-lerna-debug.log
 
 .swc
 .claude
