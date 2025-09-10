@@ -1,7 +1,7 @@
-import React, { CSSProperties, useMemo, forwardRef, useImperativeHandle } from 'react'
 import { Image } from '@tarojs/components'
-import { CommonImageProps } from '../../common/types/image'
+import React, { CSSProperties, forwardRef, useImperativeHandle, useMemo } from 'react'
 import { createQrCodeImg } from '../../common/qrcode'
+import { CommonImageProps } from '../../common/types/image'
 
 type TypeNumber =
   | 1
@@ -53,6 +53,7 @@ export interface QRCodeProps extends CommonImageProps {
   style?: CSSProperties
   errorCorrectLevel?: 'L' | 'M' | 'Q' | 'H'
   typeNumber?: TypeNumber
+  padding?: number
   foregroundColor?: string
   backgroundColor?: string
 }
@@ -67,6 +68,7 @@ const QRCode = forwardRef<{ image: string }, QRCodeProps>(
       typeNumber = 2,
       errorCorrectLevel = 'M',
       style = {},
+      padding,
       foregroundColor = '#000000',
       backgroundColor = '#FFFFFF',
       ...imageProps
@@ -78,11 +80,12 @@ const QRCode = forwardRef<{ image: string }, QRCodeProps>(
         errorCorrectLevel,
         typeNumber,
         size: size * scale,
+        padding: padding ? padding * scale : undefined,
         black: foregroundColor,
         white: backgroundColor,
       }
       return createQrCodeImg(text, options)
-    }, [errorCorrectLevel, typeNumber, size, scale, foregroundColor, backgroundColor, text])
+    }, [errorCorrectLevel, typeNumber, size, scale, padding, foregroundColor, backgroundColor, text])
     const widthString = size != null ? `${size}px` : ''
     const heightString = size != null ? `${size}px` : ''
     const finalStyle = { width: widthString, height: heightString, ...style }
