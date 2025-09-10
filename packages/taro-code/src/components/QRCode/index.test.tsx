@@ -9,9 +9,7 @@ describe('QRCode test', () => {
     expect(toJson(wrapper)).toMatchSnapshot()
   })
   it('40+ words', () => {
-    const wrapper = shallow(
-      <QRCode text='12345678901234567890123456789012345678901234567890' />
-    )
+    const wrapper = shallow(<QRCode text='12345678901234567890123456789012345678901234567890' />)
     expect(wrapper).toMatchSnapshot()
   })
 })

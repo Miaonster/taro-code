@@ -1,22 +1,30 @@
 {
-  "extends": "../../tsconfig",
   "compilerOptions": {
-    "allowJs": true,
-    "baseUrl": ".",
-    "module": "commonjs",
-    "outDir": "lib",
-    "removeComments": false,
-    "resolveJsonModule": true,
-    "rootDir": ".",
-    "skipLibCheck": false,
     "target": "es2017",
+    "module": "commonjs",
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "lib",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "rootDir": ".",
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "resolveJsonModule": true,
     "typeRoots": [
-      "node_modules/@types",
-      "global.d.ts"
-    ]
+      "node_modules/@types"
+    ],
+    "paths": {
+      // TS5090 leading './'
+      "@/*": ["./src/*"]
+    }
   },
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "include": ["./src", "./types", "./config"],
+  "compileOnSave": false
 }

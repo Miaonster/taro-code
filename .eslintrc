@@ -1,15 +1,22 @@
 {
+  "parser": "@typescript-eslint/parser",
   "extends": [
     "taro/react",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "standard-with-typescript",
-    "plugin:prettier/recommended",
+    "standard",
+    "prettier",
     "plugin:jest/recommended"
   ],
+  "plugins": [
+    "@typescript-eslint",
+    "prettier"
+  ],
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.json",
+    "ecmaVersion": 2020,
+    "sourceType": "module"
   },
   "rules": {
     "no-void": "off"

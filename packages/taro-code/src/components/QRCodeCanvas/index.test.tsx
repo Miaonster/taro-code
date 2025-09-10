@@ -9,9 +9,7 @@ describe('QRCodeCanvas test', () => {
     expect(toJson(wrapper)).toMatchSnapshot()
   })
   it('40+ words', () => {
-    const wrapper = shallow(
-      <QRCodeCanvas text='12345678901234567890123456789012345678901234567890' />,
-    )
+    const wrapper = shallow(<QRCodeCanvas text='12345678901234567890123456789012345678901234567890' />)
     expect(wrapper).toMatchSnapshot()
   })
 })

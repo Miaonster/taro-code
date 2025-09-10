@@ -1,9 +1,9 @@
+import { Canvas, View } from '@tarojs/components'
 import React, { useEffect, useRef, useState } from 'react'
-import { View, Canvas } from '@tarojs/components'
 // import Barcode from 'taro-code/lib/components/Barcode'
 // import QRCode from 'taro-code/lib/components/QRCode'
 // import QRCodeCanvas from 'taro-code/lib/components/QRCodeCanvas'
-import { Barcode, QRCode, QRCodeCanvas, BarcodeCanvas } from 'taro-code'
+import { Barcode, BarcodeCanvas, QRCode, QRCodeCanvas } from 'taro-code'
 import './index.css'
 
 const Index: React.FC = () => {
