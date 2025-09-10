@@ -56,7 +56,7 @@
     "@tarojs/taro": "4.1.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "taro-code": "file:../taro-code"
+    "taro-code": "workspace:*"
   },
   "devDependencies": {
     "@babel/core": "^7.24.4",
