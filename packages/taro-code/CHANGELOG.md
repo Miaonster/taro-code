@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.0
+
+### Minor Changes
+
+- dfe87ba: createQrCodeImg 增加 padding 参数
+
 ## 4.0.1
 
 ### Patch Changes
